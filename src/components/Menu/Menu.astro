@@ -1,0 +1,416 @@
+---
+import { getNetworks } from '@services/networks';
+import { getOffices } from '@services/offices';
+import Icon from 'astro-icon';
+const networks = await getNetworks();
+const offices = await getOffices();
+const office = offices[0];
+---
+
+<div
+  id="inicio"
+  class="relative bg-slate-200 text-sm text-slate-950 w-full"
+>
+  <div
+    class="max-w-[1440px] mx-auto flex items-center justify-between gap-4 pr-4 z-10 px-6 h-10"
+  >
+    <div class="flex">
+      {
+        office.phone && (
+          <span class="text-sm hidden sm:block mr-4">{office.phone}</span>
+        )
+      }
+      {
+        office.email && (
+          <span class="text-sm hidden sm:block mr-4">{office.email}</span>
+        )
+      }
+    </div>
+
+    <div class="flex gap-4">
+      {
+        networks.facebook && (
+          <a
+            href={networks.facebook}
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon
+              name="mdi:facebook"
+              class="w-[24px] text-slate-950 hover:text-[#3b5998]"
+            />
+          </a>
+        )
+      }
+      {
+        networks.instagram && (
+          <a
+            href={networks.instagram}
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon
+              name="mdi:instagram"
+              class="w-[24px] text-slate-950 hover:text-[#dd2a7b]"
+            />
+          </a>
+        )
+      }
+      {
+        networks.twitter && (
+          <a
+            href={networks.twitter}
+            aria-label="Twitter"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon
+              name="mdi:twitter"
+              class="w-[24px] text-slate-950 hover:text-[#00acee]"
+            />
+          </a>
+        )
+      }
+
+      {
+        office.email && (
+          <a
+            href={`mailto:${office.email}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Enviame un email"
+          >
+            <Icon
+              name="mdi:email"
+              class="w-6 text-slate-950 hover:text-slate-400"
+            />
+          </a>
+        )
+      }
+
+      {
+        networks.whatsapp && (
+          <a
+            href={networks.whatsapp}
+            aria-label="Whatsapp"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon
+              name="mdi:whatsapp"
+              class="w-[24px] text-slate-950 hover:text-[#25D366]"
+            />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<div
+  id="backdrop"
+  class="fixed backdrop-blur-sm left-0 right-0 h-full opacity-0 hidden z-[5]"
+>
+</div>
+
+<nav
+  class="sticky min-h-[40px] top-0 items-center bg-slate-200 shadow-[0_4px_9px_0px_rgba(0,0,0,0.5)] z-10"
+>
+  <div
+    class="max-w-[1440px] mx-auto flex flex-row items-center justify-between px-6 py-0"
+  >
+    <!-- Logo -->
+    <div class="flex items-center">
+      <Icon
+        width={40}
+        height={40}
+        name="logo"
+        alt="logo"
+      />
+      <span class="text-xl ml-4">Librería Alfa</span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex justify-between items-center">
+      <ul class="list-none p-0 m-0 flex items-center h-[50px] ml-3">
+        <li
+          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 
+        ${
+          Astro.url.pathname === '/' || Astro.url.pathname === '/#inicio'
+            ? 'border-b border-solid border-navCurrentPageColor'
+            : 'border-none'
+        }
+        `}
+        >
+          <a
+            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
+            href="/#inicio"
+          >
+            <!-- scroll={false} -->
+             Inicio
+          </a>
+        </li>
+        <li
+          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
+            Astro.url.pathname === '/#nosotros'
+              ? 'border-b border-solid border-navCurrentPageColor'
+              : 'border-none'
+          }`}
+        >
+          <a
+            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
+            href="/#nosotros"
+          >
+            <!-- scroll={false} -->
+             Sobre mi
+          </a>
+        </li>
+
+        <li
+          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
+            Astro.url.pathname == '/#servicios'
+              ? 'border-b border-solid border-navCurrentPageColor'
+              : ''
+          }`}
+        >
+          <a
+            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
+            href="/#servicios"
+          >
+            <!-- scroll={false} -->
+             Servicios
+          </a>
+        </li>
+        <li
+          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
+            Astro.url.pathname === '/blog'
+              ? 'border-b border-solid border-navCurrentPageColor'
+              : ''
+          }`}
+        >
+          <a
+            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
+            href="/blog"
+          >
+            <!-- scroll={false} -->
+             Blog
+          </a>
+        </li>
+        <li
+          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
+            Astro.url.pathname == '/contact'
+              ? 'border-b border-solid border-navCurrentPageColor'
+              : ''
+          }`}
+        >
+          <a
+            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
+            href="/contact"
+          >
+            <!-- scroll={false} -->
+             Contacto
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- cart / favorites -->
+    <div class="flex gap-4">
+      <button
+        class="w-6 h-6"
+        id="favorites"
+      >
+        <Icon name="mdi:heart-outline" />
+      </button>
+
+      <button
+        class="w-6 h-6"
+        id="cart"
+      >
+        <Icon name="mdi:cart-outline" />
+      </button>
+
+      <button
+        type="button"
+        id="open-menu"
+        class="w-6 h-6 md:hidden"
+      >
+        <Icon
+          id="icon"
+          name="mdi:menu"
+        />
+      </button>
+    </div>
+    <!-- mobile menu -->
+    <div
+      class="absolute top-12 w-[75%] sm:w-[50%] bg-slate-200 -left-full transition-all duration-500 z-40"
+      id="menu-mobile"
+    >
+      <ul
+        class="min-h-screen justify-between px-0 list-none"
+        id="menu"
+      >
+        <li
+          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950-"
+        >
+          <a
+            class="no-underline text-black font-normal px-6 py-6 block"
+            href="/#inicio"
+            data-scroll-spy
+          >
+            <!-- scroll={false} -->
+             Inicio
+          </a>
+        </li>
+
+        <li
+          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
+        >
+          <a
+            class="no-underline text-black font-normal px-6 py-6 block"
+            href="/#nosotros"
+            data-scroll-spy
+          >
+            <!-- scroll={false} -->
+             Sobre mí
+          </a>
+        </li>
+
+        <li
+          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
+        >
+          <a
+            class="no-underline text-black font-normal px-6 py-6 block"
+            href="/#servicios"
+            data-scroll-spy
+          >
+            <!-- scroll={false} -->
+             Servicios
+          </a>
+        </li>
+        <li
+          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
+        >
+          <a
+            class="no-underline text-black font-normal px-6 py-6 block"
+            href="/blog"
+            data-scroll-spy
+          >
+            <!-- scroll={false} -->
+             Blog
+          </a>
+        </li>
+        <li
+          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
+        >
+          <a
+            class="no-underline text-black font-normal px-6 py-6 block"
+            href="/contact"
+            data-scroll-spy
+          >
+            <!-- scroll={false} -->
+             Contacto
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /**********************/
+  /***   ANIMATIONS   ***/
+  /**********************/
+  .block px-2 py-1 text-slate-950 hover:text-slate-950 {
+    position: relative;
+    display: block;
+    /* padding: 4px 8px; */
+  }
+  .anim__bottom::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    bottom: -1px;
+    width: 0%;
+    text-align: center;
+    background: var(--secondary-color);
+    height: 1px;
+    transition:
+      width 0.5s ease,
+      left 0.5s ease,
+      right 0.5s ease;
+  }
+  .anim__bottom:hover::after {
+    width: 100%;
+  }
+  .to__center::after {
+    left: 50%;
+  }
+  .to__center:hover::after {
+    left: 0%;
+  }
+</style>
+
+<script>
+  const $openMenu = document.getElementById('open-menu');
+  const $menuMobile = document.getElementById('menu-mobile');
+  const $menu = document.getElementById('menu');
+  const $backdrop = document.getElementById('backdrop');
+
+  // Agregar un event listener al botón para abrir el menú
+  $openMenu.addEventListener('click', openCloseMenu);
+
+  function openCloseMenu() {
+    // Alternar la visibilidad del menú móvil
+    if ($menuMobile.classList.contains('left-0')) {
+      // Saco
+      $menuMobile.classList.add('-left-full');
+      $menuMobile.classList.remove('left-0');
+      $backdrop.classList.add('opacity-0', 'hidden');
+      $backdrop.classList.remove('opacity-100', 'block');
+    } else {
+      // Pongo
+      $menuMobile.classList.add('left-0');
+      $menuMobile.classList.remove('-left-full');
+      $backdrop.classList.remove('opacity-0', 'hidden');
+      $backdrop.classList.add('opacity-100', 'block');
+    }
+  }
+  // Agregar event listener al menú para cerrarlo al hacer clic en un enlace
+  $menu.addEventListener('click', () => {
+    $menuMobile.style.display = 'none';
+  });
+
+  // Agregar event listener al documento para cerrar el menú al hacer clic fuera de él
+  document.addEventListener('click', (event) => {
+    if (
+      event.target !== $openMenu &&
+      event.target !== $menu &&
+      !$menu.contains(event.target as HTMLButtonElement)
+    ) {
+      // $menuMobile.style.display = 'none';
+      $menuMobile.classList.add('-left-full');
+      $menuMobile.classList.remove('left-0');
+      $backdrop.classList.add('opacity-0', 'hidden');
+      $backdrop.classList.remove('opacity-100', 'block');
+    }
+  });
+
+  const $icon = document.getElementById('icon');
+  $icon.addEventListener('click', (event) => {
+    openCloseMenu();
+    event.stopPropagation();
+  });
+
+  const $cart = document.getElementById('cart');
+  $cart.addEventListener('click', () => {
+    console.log('Cart');
+  });
+
+  const $favorites = document.getElementById('favorites');
+  $favorites.addEventListener('click', () => {
+    console.log('favorites');
+  });
+</script>

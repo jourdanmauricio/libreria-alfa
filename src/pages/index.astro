@@ -1,20 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Menu from '@components/Menu/Menu.astro';
+
+import 'node_modules/@glidejs/glide/dist/css/glide.core.min.css';
+// import 'node_modules/@glidejs/glide/dist/css/glide.theme.min.css';
+import '@styles/glide.css';
+import Hero from '@components/Hero/Hero.astro';
+
+// import ItemAdoption from '@components/Hero/ItemAdoption.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>
-    <h1 class="text-red-500">Welcome to Astro</h1>
-  </main>
+<Layout title="Librería Alfa">
+  <Menu />
+
+  <Hero />
+
+  <div class="w-full h-[600px] flex items-center justify-center">
+    <h1 class="text-slate-50 text-2xl">Welcome to Astro</h1>
+  </div>
+
+  <footer class="h-40 bg-yellow-600">HOLAS</footer>
 </Layout>
 
 <style>
   main {
     margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
+    /* padding: 1rem; */
+    /* width: 800px; */
+    /* max-width: calc(100% - 2rem); */
     color: white;
     font-size: 20px;
     line-height: 1.6;
