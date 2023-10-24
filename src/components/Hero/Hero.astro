@@ -8,7 +8,11 @@ const bgHero = resp.filter((slide) => slide.type === 'bg-hero');
 const background = `bg-[url('${bgHero[0].image}')]`;
 ---
 
-<header class=`${background} h-screen md:h-[450px] w-full`>
+<header
+  style={{ backgroundImage: `url(${bgHero[0].image})` }}
+  class="bg-center bg-no-repeat h-screen md:h-[450px] w-full"
+>
+  <!-- ${background} -->
   <div class="glide max-w-[1440px] mx-auto">
     <div
       class="glide__track"
