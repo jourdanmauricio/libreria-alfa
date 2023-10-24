@@ -1,0 +1,38 @@
+---
+import { getProdsLib } from '@services/products';
+
+interface Props {
+  section?: string;
+  category?: string;
+}
+
+const { section, category } = Astro.props;
+
+const resp = await getProdsLib();
+const products = resp.filter(
+  (prod) => prod.category === category || prod.sections.includes(section)
+);
+console.log('PRODS', products);
+---
+
+<section>
+  <h2 class="py-16 p-2 text-center border-4">Productos Nuevos</h2>
+
+  <section class="flex">
+    {
+      products.map((prod) => (
+        <article>
+          <div class="w-[250px] h-[250px]">
+            <img
+              class="w-full h-full object-contain"
+              src={prod.image}
+              alt={prod.altImage}
+            />
+          </div>
+          <p>{prod.name}</p>
+          <p>${prod.price}</p>
+        </article>
+      ))
+    }
+  </section>
+</section>
