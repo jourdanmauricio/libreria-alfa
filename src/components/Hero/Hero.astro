@@ -1,34 +1,29 @@
 ---
 import { Icon } from 'astro-icon';
+import { getSlides } from '@services/slides';
 
-const carousel = [
-  {
-    id: 0,
-    title: 'Agendas',
-    src: '/libreria-alfa/images/HeroAgendas.jpeg',
-  },
-  { id: 1, title: 'Bobi', src: '/libreria-alfa/images/HeroMedios.jpeg' },
-  { id: 2, title: 'Mimi', src: '/libreria-alfa/images/HeroImpresiones.jpeg' },
-  { id: 3, title: 'Hermes', src: '/libreria-alfa/images/HeroOtros.jpeg' },
-];
+const resp = await getSlides();
+const slides = resp.filter((slide) => slide.type === 'Hero');
+const bgHero = resp.filter((slide) => slide.type === 'bg-hero');
+const background = `bg-[url('${bgHero[0].image}')]`;
 ---
 
-<header class="header h-screen md:h-[450px]">
-  <div class="glide">
+<header class=`${background} h-screen md:h-[450px] w-full`>
+  <div class="glide max-w-[1440px] mx-auto">
     <div
       class="glide__track"
       data-glide-el="track"
     >
       <ul class="glide__slides h-full md:h-[450px]">
         {
-          carousel.map((slide) => (
+          slides.map((slide) => (
             <li class="glide__slide h-full relative">
               <article>
                 <div class="overflow-hidden w-full h-[450px]">
                   <img
                     class="glide__img h-full w-full object-contain"
-                    src={slide.src}
-                    alt=""
+                    src={slide.image}
+                    alt={slide.altImage}
                   />
                 </div>
               </article>
@@ -67,7 +62,7 @@ const carousel = [
       data-glide-el="controls[nav]"
     >
       {
-        carousel.map((pet) => (
+        slides.map((pet) => (
           <button
             class="glide__bullet"
             data-glide-dir={`=${pet.id}`}
@@ -77,16 +72,6 @@ const carousel = [
     </div>
   </div>
 </header>
-
-<style>
-  .header {
-    background: linear-gradient(
-      90deg,
-      rgba(249, 139, 36, 1) 0%,
-      rgba(255, 255, 255, 255) 200%
-    );
-  }
-</style>
 
 <script>
   import Glide from '@glidejs/glide';
