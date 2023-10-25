@@ -4,7 +4,7 @@ import {
   isFavoritesOpen,
   favoritesItems,
   removeFavoriteItem,
-} from '@store/favorites';
+} from '@stores/favorites';
 
 export default function FavoritesFlyout() {
   const $isFavoritesOpen = useStore(isFavoritesOpen);

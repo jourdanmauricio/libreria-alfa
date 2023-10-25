@@ -5,7 +5,7 @@ import {
   favoritesItems,
   isFavorite,
   removeFavoriteItem,
-} from '@store/favorites';
+} from '@stores/favorites';
 
 const FavoriteBtn = ({ id, image, name, altImage, price }) => {
   const favorites = useStore(favoritesItems);

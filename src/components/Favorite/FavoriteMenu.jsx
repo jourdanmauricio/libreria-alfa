@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react';
 import { Icon } from '@iconify/react';
-import { favoritesItems, isFavoritesOpen } from '@store/favorites';
+import { favoritesItems, isFavoritesOpen } from '@stores/favorites';
 
 const FavoriteMenu = () => {
   const $favorites = useStore(favoritesItems);
