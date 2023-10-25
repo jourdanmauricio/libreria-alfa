@@ -1,15 +1,17 @@
 {
   "extends": "astro/tsconfigs/base",
-
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "/home/mauricio/Mau/sites/lumau/libreria-alfa",
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@services/*": ["src/services/*"],
       "@layouts/*": ["src/layouts/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
-    }
+      "@utils/*": ["src/utils/*"],
+      "@store/*": ["src/store/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

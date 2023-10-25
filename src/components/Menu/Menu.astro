@@ -1,7 +1,11 @@
 ---
+import FavoriteMenu from '@components/Favorite/FavoriteMenu';
+import FavoritesFlyout from '@components/Favorite/FavoritesFlyout';
 import { getNetworks } from '@services/networks';
 import { getOffices } from '@services/offices';
+
 import Icon from 'astro-icon';
+
 const networks = await getNetworks();
 const offices = await getOffices();
 const office = offices[0];
@@ -73,7 +77,6 @@ const office = offices[0];
           </a>
         )
       }
-
       {
         office.email && (
           <a
@@ -218,12 +221,14 @@ const office = offices[0];
 
     <!-- cart / favorites -->
     <div class="flex gap-4">
-      <button
+      <!-- <button
         class="w-6 h-6"
         id="favorites"
       >
         <Icon name="mdi:heart-outline" />
-      </button>
+      </button> -->
+
+      <FavoriteMenu client:only />
 
       <button
         class="w-6 h-6"
@@ -317,6 +322,7 @@ const office = offices[0];
       </ul>
     </div>
   </div>
+  <FavoritesFlyout client:only />
 </nav>
 
 <style>
@@ -407,10 +413,5 @@ const office = offices[0];
   const $cart = document.getElementById('cart');
   $cart.addEventListener('click', () => {
     console.log('Cart');
-  });
-
-  const $favorites = document.getElementById('favorites');
-  $favorites.addEventListener('click', () => {
-    console.log('favorites');
   });
 </script>
