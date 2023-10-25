@@ -37,11 +37,11 @@ export default function FavoritesFlyout() {
 
   return (
     <>
-      {/* <div
+      <div
         className={`absolute backdrop-blur-sm left-0 right-0 top-10 md:top-14 h-screen opacity-100 z-[5] ${
           $isFavoritesOpen ? 'block' : 'hidden'
         } `}
-      ></div> */}
+      ></div>
       <aside
         ref={componenteRef}
         className={`absolute p-6 bg-slate-200 top-10 md:top-14 right-0 border-2 h-screen overflow-y-auto transition duration-300 ease-in-out origin-top-right z-[5] ${
