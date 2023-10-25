@@ -6,7 +6,7 @@ import {
   removeFavoriteItem,
 } from '@stores/favorites';
 
-export default function FavoritesFlyout({ botonNoCerrar }) {
+export default function FavoritesFlyout({ noCloseRef }) {
   const $isFavoritesOpen = useStore(isFavoritesOpen);
   const $favoritesItems = useStore(favoritesItems);
   const componenteRef = useRef(null);
@@ -25,10 +25,11 @@ export default function FavoritesFlyout({ botonNoCerrar }) {
   };
 
   const handleClickOutside = (event) => {
+    // console.log('noCloseRef', noCloseRef);
     if (
       componenteRef.current &&
       !componenteRef.current.contains(event.target) &&
-      event.target !== botonNoCerrar
+      event.target !== noCloseRef.current
     ) {
       isFavoritesOpen.set(false);
     }
@@ -37,13 +38,13 @@ export default function FavoritesFlyout({ botonNoCerrar }) {
   return (
     <>
       <div
-        className={`absolute backdrop-blur-sm left-0 right-0 top-10 md:top-14 h-screen opacity-100 z-[5] ${
+        className={`absolute backdrop-blur-sm left-0 right-0 top-10 md:top-12 h-screen opacity-100 z-[5] ${
           $isFavoritesOpen ? 'block' : 'hidden'
         } `}
       ></div>
       <aside
         ref={componenteRef}
-        className={`absolute p-6 bg-slate-200 top-10 md:top-14 right-0 border-2 h-screen overflow-y-auto transition duration-300 ease-in-out origin-top-right z-[5] ${
+        className={`absolute p-6 bg-slate-200 top-10 md:top-12 right-0 border-2 h-screen overflow-y-auto transition duration-300 ease-in-out origin-top-right z-[5] ${
           $isFavoritesOpen ? 'scale-100' : 'scale-0'
         }`}
       >

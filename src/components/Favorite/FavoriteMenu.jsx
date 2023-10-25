@@ -1,24 +1,24 @@
+import FavoritesFlyout from '@components/Favorite/FavoritesFlyout';
 import { useStore } from '@nanostores/react';
 import { Icon } from '@iconify/react';
 import { favoritesItems, isFavoritesOpen } from '@stores/favorites';
-import FavoritesFlyout from '@components/Favorite/FavoritesFlyout';
 import { useRef, useState } from 'react';
 
 const FavoriteMenu = () => {
   const $favorites = useStore(favoritesItems);
   const $isFavoritesOpen = useStore(isFavoritesOpen);
-  const botonNoCerrarRef = useRef(null);
+  const noCloseRef = useRef(null);
 
   const handleClick = () => {
     isFavoritesOpen.set(!$isFavoritesOpen);
+    // console.log('noCloseRef', noCloseRef);
   };
 
   return (
     <>
       <button
-        ref={botonNoCerrarRef}
-        className="relative no-close"
-        id="favorites"
+        ref={noCloseRef}
+        className="relative"
         disabled={$favorites.length === 0}
         onClick={handleClick}
       >
@@ -34,7 +34,7 @@ const FavoriteMenu = () => {
       </button>
       <FavoritesFlyout
         client:only
-        botonNoCerrar={botonNoCerrarRef.current}
+        noCloseRef={noCloseRef}
       />
     </>
   );

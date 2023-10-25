@@ -138,33 +138,27 @@ const office = offices[0];
     <!-- Desktop Menu -->
     <div class="hidden md:flex justify-between items-center">
       <ul class="list-none p-0 m-0 flex items-center h-[50px] ml-3">
-        <li
-          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 
-        ${
-          Astro.url.pathname === '/' || Astro.url.pathname === '/#inicio'
-            ? 'border-b border-solid border-navCurrentPageColor'
-            : 'border-none'
-        }
-        `}
-        >
+        <li class="ml-4 no-underline text-gray-700 font-semibold">
           <a
-            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
-            href="/#inicio"
+            class={`block px-2 py-1  hover:text-[#f98b24] ${
+              Astro.url.pathname === '/libreria-alfa/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/"
           >
             <!-- scroll={false} -->
              Inicio
           </a>
         </li>
-        <li
-          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
-            Astro.url.pathname === '/#nosotros'
-              ? 'border-b border-solid border-navCurrentPageColor'
-              : 'border-none'
-          }`}
-        >
+        <li class="ml-4 no-underline text-gray-700 font-semibol">
           <a
-            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
-            href="/#nosotros"
+            class={`block px-2 py-1  hover:text-[#f98b24] ${
+              Astro.url.pathname === '/libreria-alfa/nosotros/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/nosotros/"
           >
             <!-- scroll={false} -->
              Sobre nosotros
