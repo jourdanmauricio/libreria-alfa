@@ -6,7 +6,7 @@ import {
   removeFavoriteItem,
 } from '@stores/favorites';
 
-export default function FavoritesFlyout() {
+export default function FavoritesFlyout({ botonNoCerrar }) {
   const $isFavoritesOpen = useStore(isFavoritesOpen);
   const $favoritesItems = useStore(favoritesItems);
   const componenteRef = useRef(null);
@@ -27,10 +27,9 @@ export default function FavoritesFlyout() {
   const handleClickOutside = (event) => {
     if (
       componenteRef.current &&
-      !componenteRef.current.contains(event.target)
+      !componenteRef.current.contains(event.target) &&
+      event.target !== botonNoCerrar
     ) {
-      console.log('current', componenteRef.current);
-      console.log('target', event.target);
       isFavoritesOpen.set(false);
     }
   };
