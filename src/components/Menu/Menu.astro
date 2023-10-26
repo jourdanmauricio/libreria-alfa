@@ -138,9 +138,9 @@ const office = offices[0];
     <!-- Desktop Menu -->
     <div class="hidden md:flex justify-between items-center">
       <ul class="list-none p-0 m-0 flex items-center h-[50px] ml-3">
-        <li class="ml-4 no-underline text-gray-700 font-semibold">
+        <li class="ml-4">
           <a
-            class={`block px-2 py-1  hover:text-[#f98b24] ${
+            class={`block px-2 py-1 hover:text-[#f98b24] no-underline font-semibold ${
               Astro.url.pathname === '/libreria-alfa/'
                 ? 'text-[#f98b24]'
                 : 'text-slate-950'
@@ -151,9 +151,9 @@ const office = offices[0];
              Inicio
           </a>
         </li>
-        <li class="ml-4 no-underline text-gray-700 font-semibol">
+        <li class="ml-4">
           <a
-            class={`block px-2 py-1  hover:text-[#f98b24] ${
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/nosotros/'
                 ? 'text-[#f98b24]'
                 : 'text-slate-950'
@@ -165,46 +165,40 @@ const office = offices[0];
           </a>
         </li>
 
-        <li
-          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
-            Astro.url.pathname == '/#servicios'
-              ? 'border-b border-solid border-navCurrentPageColor'
-              : ''
-          }`}
-        >
+        <li class="ml-4">
           <a
-            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
-            href="/#servicios"
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/productos/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/productos/1"
           >
             <!-- scroll={false} -->
              Productos
           </a>
         </li>
-        <li
-          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
-            Astro.url.pathname === '/blog'
-              ? 'border-b border-solid border-navCurrentPageColor'
-              : ''
-          }`}
-        >
+        <li class="ml-4">
           <a
-            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
-            href="/blog"
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/impresiones/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/impresiones/"
           >
             <!-- scroll={false} -->
              Impresiones
           </a>
         </li>
-        <li
-          class={`ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950 ${
-            Astro.url.pathname == '/contact'
-              ? 'border-b border-solid border-navCurrentPageColor'
-              : ''
-          }`}
-        >
+        <li class="ml-4">
           <a
-            class="block px-2 py-1 text-slate-950 hover:text-slate-950"
-            href="/contact"
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/contacto/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/contacto/"
           >
             <!-- scroll={false} -->
              Contacto
@@ -215,14 +209,9 @@ const office = offices[0];
 
     <!-- cart / favorites -->
     <div class="flex gap-4">
-      <!-- <button
-        class="w-6 h-6"
-        id="favorites"
-      >
-        <Icon name="mdi:heart-outline" />
-      </button> -->
-
-      <FavoriteMenu client:only />
+      <div class="w-6">
+        <FavoriteMenu client:only />
+      </div>
 
       <button
         class="w-6 h-6"
@@ -244,73 +233,73 @@ const office = offices[0];
     </div>
     <!-- mobile menu -->
     <div
-      class="absolute top-12 w-[75%] sm:w-[50%] bg-slate-200 -left-full transition-all duration-500 z-40"
+      class="absolute top-10 w-[75%] sm:w-[50%] bg-slate-200 -left-full transition-all duration-500 z-40"
       id="menu-mobile"
     >
       <ul
         class="min-h-screen justify-between px-0 list-none"
         id="menu"
       >
-        <li
-          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950-"
-        >
+        <li class="ml-4 p-6 mt-4">
           <a
-            class="no-underline text-black font-normal px-6 py-6 block"
-            href="/#inicio"
-            data-scroll-spy
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline  ${
+              Astro.url.pathname === '/libreria-alfa/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/"
           >
-            <!-- scroll={false} -->
-             Inicio
+            Inicio
           </a>
         </li>
 
-        <li
-          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
-        >
+        <li class="ml-4 p-6">
           <a
-            class="no-underline text-black font-normal px-6 py-6 block"
-            href="/#nosotros"
-            data-scroll-spy
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/nosotros/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/nosotros/"
           >
-            <!-- scroll={false} -->
-             Sobre mí
+            Sobre nosotros
           </a>
         </li>
 
-        <li
-          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
-        >
+        <li class="ml-4 p-6">
           <a
-            class="no-underline text-black font-normal px-6 py-6 block"
-            href="/#servicios"
-            data-scroll-spy
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/productos/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/productos/"
           >
-            <!-- scroll={false} -->
-             Servicios
+            Productos
           </a>
         </li>
-        <li
-          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
-        >
+        <li class="ml-4 p-6">
           <a
-            class="no-underline text-black font-normal px-6 py-6 block"
-            href="/blog"
-            data-scroll-spy
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/impresiones/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/impresiones/"
           >
-            <!-- scroll={false} -->
-             Blog
+            Impresiones
           </a>
         </li>
-        <li
-          class="ml-4 no-underline text-gray-700 font-semibold hover:border-b hover:border-solid hover:border-b-slate-950"
-        >
+        <li class="ml-4 p-6">
           <a
-            class="no-underline text-black font-normal px-6 py-6 block"
-            href="/contact"
-            data-scroll-spy
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/contacto/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/contacto/"
           >
-            <!-- scroll={false} -->
-             Contacto
+            Contacto
           </a>
         </li>
       </ul>

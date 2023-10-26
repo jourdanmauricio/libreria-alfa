@@ -1,0 +1,117 @@
+---
+import { getProdsLib } from '@services/products';
+import Layout from '../../layouts/Layout.astro';
+import Menu from '@components/Menu/Menu.astro';
+import SearchProducts from '@components/Search/SearchProducts.jsx';
+
+import Pagination from '@components/Pagination/Pagination.astro';
+import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
+import FavoriteBtn from '@components/Favorite/FavoriteBtn.jsx';
+
+const products = await getProdsLib();
+let cats = products.map((product) => product.categoryWeb);
+cats = cats.filter((item, index) => cats.indexOf(item) === index);
+cats = cats.sort();
+
+export async function getStaticPaths({ paginate }) {
+  const data = await getProdsLib();
+
+  return paginate(data, { pageSize: 15 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Librería Alfa">
+  <Menu />
+  <section class="flex bg-slate-50">
+    <!-- max-h-screen overflow-y-scroll -->
+    <aside class="p-4 border border-l min-w-fit">
+      <p>Categorías</p>
+
+      <hr />
+      {cats.map((cat) => <p class="py-2">{cat}</p>)}
+    </aside>
+    <main class="h-fit w-full">
+      <div class="px-4 lg:px-16 mt-10 w-full mx-auto">
+        <SearchProducts
+          products={products}
+          client:load
+        />
+
+        <div
+          id="lista"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10"
+        >
+          {
+            page.data.map((prod) => (
+              <article class="relative w-full h-fit shadow mx-auto max-w-[300px] lg:max-w-none">
+                <div class="w-full h-[200px] flex justify-center flex-none overflow-hidden">
+                  {prod.image !== null ? (
+                    <img
+                      class="w-[200px] h-[200px] object-contain mx-auto hover:scale-110 transition duration-500"
+                      src={prod.image}
+                      alt={prod.altImage}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      class="w-full h-full object-contain hover:scale-110 transition duration-500"
+                      src={sinImagen.src}
+                      alt="Sin imagen disponible"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+                <div class="px-4">
+                  <h3 class="font-semibold min-h-[3rem]">{prod.name}</h3>
+                  <p class="py-4">${prod.price}</p>
+                </div>
+                <FavoriteBtn
+                  id={prod.id}
+                  image={prod.image}
+                  altImage={prod.altImage}
+                  name={prod.name}
+                  price={prod.price}
+                  client:load
+                />
+              </article>
+            ))
+          }
+        </div>
+
+        {
+          page.total > page.size ? (
+            <div
+              id="pagination"
+              class="py-20"
+            >
+              <Pagination
+                length={page.lastPage}
+                firstPage="1"
+                lastPage={page.lastPage}
+                currentPage={page.currentPage}
+              />
+            </div>
+          ) : null
+        }
+      </div>
+    </main>
+  </section>
+</Layout>
+
+<script>
+  const $lista = document.getElementById('lista');
+  const $pagination = document.getElementById('pagination');
+
+  document.addEventListener('show-result-search', (event) => {
+    const customEvent = event as CustomEvent;
+    if (customEvent.detail === true) {
+      $lista.classList.add('hidden');
+      $pagination.classList.add('hidden');
+    } else {
+      $lista.classList.remove('hidden');
+      $pagination.classList.remove('hidden');
+    }
+  });
+</script>
