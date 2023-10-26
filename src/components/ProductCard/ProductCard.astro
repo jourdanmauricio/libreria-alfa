@@ -1,0 +1,51 @@
+---
+import FavoriteBtn from '@components/Favorite/FavoriteBtn.jsx';
+import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
+
+interface Props {
+  prod: {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    altImage: string;
+  };
+}
+const { prod } = Astro.props;
+---
+
+<article
+  class="relative w-full h-fit shadow mx-auto max-w-[300px] lg:max-w-none"
+>
+  <div class="w-full h-[200px] flex justify-center flex-none overflow-hidden">
+    {
+      prod.image !== null ? (
+        <img
+          class="w-[200px] h-[200px] object-contain mx-auto hover:scale-110 transition duration-500"
+          src={prod.image}
+          alt={prod.altImage}
+          loading="lazy"
+        />
+      ) : (
+        <img
+          class="w-full h-full object-contain hover:scale-110 transition duration-500"
+          src={sinImagen.src}
+          alt="Sin imagen disponible"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
+  <div class="px-4">
+    <h3 class="font-semibold min-h-[3rem]">{prod.name}</h3>
+    <p class="py-4">${prod.price}</p>
+  </div>
+  <FavoriteBtn
+    id={prod.id}
+    image={prod.image}
+    altImage={prod.altImage}
+    name={prod.name}
+    price={prod.price}
+    client:load
+  />
+</article>
