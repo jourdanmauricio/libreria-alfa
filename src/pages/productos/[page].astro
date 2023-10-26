@@ -3,6 +3,7 @@ import { getProdsLib } from '@services/products';
 import Layout from '../../layouts/Layout.astro';
 import Menu from '@components/Menu/Menu.astro';
 import SearchProducts from '@components/Search/SearchProducts.jsx';
+import AsideCategories from '@components/AsideCategories/AsideCategories.astro';
 
 import Pagination from '@components/Pagination/Pagination.astro';
 import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
@@ -24,17 +25,7 @@ const { page, cats, products } = Astro.props;
   <Menu />
   <section class="flex bg-slate-50">
     <!-- max-h-screen overflow-y-scroll -->
-    <aside class="p-4 border border-l min-w-fit hidden md:block">
-      <p>Categorías</p>
-      <hr />
-      {
-        cats.map((cat) => (
-          <div class="py-2">
-            <a href={`/libreria-alfa/productos/${cat}/1`}>{cat}</a>
-          </div>
-        ))
-      }
-    </aside>
+    <AsideCategories cats={cats} />
     <main class="h-fit w-full">
       <div class="px-4 lg:px-16 mt-10 w-full mx-auto">
         <SearchProducts
