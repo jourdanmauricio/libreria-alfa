@@ -1,5 +1,5 @@
 ---
-const { length, firstPage, lastPage, currentPage } = Astro.props;
+const { length, firstPage, lastPage, currentPage, prev, next } = Astro.props;
 ---
 
 <div class="flex w-full gap-8 justify-center">
@@ -9,9 +9,10 @@ const { length, firstPage, lastPage, currentPage } = Astro.props;
         ? 'bg-slate-200 pointer-events-none cursor-default'
         : 'bg-[#f98b24]'
     }`}
-    href=`/libreria-alfa/productos/${currentPage - 1}`
+    href={prev}
     >Anterior</a
   >
+  <!-- href=`/libreria-alfa/productos/${currentPage - 1}` -->
   <div class="border border-[#f98b24] px-4 py-2 text-slate-800">
     {currentPage}
   </div>
@@ -21,7 +22,8 @@ const { length, firstPage, lastPage, currentPage } = Astro.props;
         ? 'bg-slate-200 pointer-events-none cursor-default'
         : 'bg-[#f98b24]'
     }`}
-    href=`/libreria-alfa/productos/${currentPage + 1}`
+    href={next}
     >Siguiente</a
   >
+  <!-- href=`/libreria-alfa/productos/${currentPage + 1}` -->
 </div>

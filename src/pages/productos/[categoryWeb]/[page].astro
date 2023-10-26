@@ -1,6 +1,6 @@
 ---
 import { getProdsLib } from '@services/products';
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 import Menu from '@components/Menu/Menu.astro';
 import SearchProducts from '@components/Search/SearchProducts.jsx';
 
@@ -15,11 +15,26 @@ cats = cats.sort();
 
 export async function getStaticPaths({ paginate }) {
   const data = await getProdsLib();
+  let cats = data.map((product) => product.categoryWeb);
+  cats = cats.filter((item, index) => cats.indexOf(item) === index);
+  cats = cats.sort();
 
-  return paginate(data, { pageSize: 15 });
+  return cats.flatMap((categoryWeb) => {
+    const filteredProducts = data.filter(
+      (product) => product.categoryWeb === categoryWeb
+    );
+    return paginate(filteredProducts, {
+      params: { categoryWeb },
+      pageSize: 15,
+    });
+  });
+
+  // paginate(data, { pageSize: 15 });
 }
-
 const { page } = Astro.props;
+const params = Astro.params;
+
+//const { page } = Astro.props;
 ---
 
 <Layout title="Librería Alfa">
@@ -111,14 +126,16 @@ const { page } = Astro.props;
   const $lista = document.getElementById('lista');
   const $pagination = document.getElementById('pagination');
 
+  console.log('lista / pagination', $lista, $pagination);
+
   document.addEventListener('show-result-search', (event) => {
     const customEvent = event as CustomEvent;
     if (customEvent.detail === true) {
       $lista.classList.add('hidden');
-      $pagination.classList.add('hidden');
+      if ($pagination) $pagination.classList.add('hidden');
     } else {
       $lista.classList.remove('hidden');
-      $pagination.classList.remove('hidden');
+      if ($pagination) $pagination.classList.remove('hidden');
     }
   });
 </script>
