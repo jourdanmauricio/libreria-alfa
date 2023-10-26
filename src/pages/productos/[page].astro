@@ -8,18 +8,16 @@ import Pagination from '@components/Pagination/Pagination.astro';
 import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
 import FavoriteBtn from '@components/Favorite/FavoriteBtn.jsx';
 
-const products = await getProdsLib();
-let cats = products.map((product) => product.categoryWeb);
-cats = cats.filter((item, index) => cats.indexOf(item) === index);
-cats = cats.sort();
-
 export async function getStaticPaths({ paginate }) {
-  const data = await getProdsLib();
+  const products = await getProdsLib();
+  let cats = products.map((product) => product.categoryWeb);
+  cats = cats.filter((item, index) => cats.indexOf(item) === index);
+  cats = cats.sort();
 
-  return paginate(data, { pageSize: 15 });
+  return paginate(products, { pageSize: 15, props: { cats, products } });
 }
 
-const { page } = Astro.props;
+const { page, cats, products } = Astro.props;
 ---
 
 <Layout title="Librería Alfa">
