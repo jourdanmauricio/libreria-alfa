@@ -168,7 +168,7 @@ const office = offices[0];
         <li class="ml-4">
           <a
             class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
-              Astro.url.pathname === '/libreria-alfa/productos/'
+              Astro.url.pathname.includes('/libreria-alfa/productos/')
                 ? 'text-[#f98b24]'
                 : 'text-slate-950'
             }`}

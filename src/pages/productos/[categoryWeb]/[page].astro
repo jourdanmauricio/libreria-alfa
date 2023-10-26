@@ -32,13 +32,24 @@ const { page, cats, products } = Astro.props;
   <Menu />
   <section class="flex bg-slate-50">
     <!-- max-h-screen overflow-y-scroll -->
-    <aside class="p-4 border border-l min-w-fit hidden md:block">
-      <p>Categorías</p>
-      <hr />
+    <aside
+      class="p-4 border-r border-slate-400 min-w-fit hidden md:block shadow-[rgba(0,0,0,0.5)_0px_0px_8px_0px]"
+    >
+      <h2>Categorías</h2>
+      <hr class="h-px my-4 bg-slate-400 border-0" />
       {
         cats.map((cat) => (
           <div class="py-2">
-            <a href={`/libreria-alfa/productos/${cat}/1`}>{cat}</a>
+            <a
+              class={`${
+                cat === Astro.params.categoryWeb
+                  ? 'text-[#f98b24]'
+                  : 'text-slate-950'
+              }`}
+              href={`/libreria-alfa/productos/${cat}/1`}
+            >
+              {cat}
+            </a>
           </div>
         ))
       }
