@@ -26,9 +26,8 @@ const { page } = Astro.props;
   <Menu />
   <section class="flex bg-slate-50">
     <!-- max-h-screen overflow-y-scroll -->
-    <aside class="p-4 border border-l min-w-fit">
+    <aside class="p-4 border border-l min-w-fit hidden md:block">
       <p>Categorías</p>
-
       <hr />
       {cats.map((cat) => <p class="py-2">{cat}</p>)}
     </aside>
