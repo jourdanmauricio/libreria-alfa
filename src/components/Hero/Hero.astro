@@ -11,7 +11,7 @@ const bgHero = resp.filter((slide) => slide.type === 'bg-hero');
   style={{ backgroundImage: `url(${bgHero[0].image})` }}
   class="bg-center bg-no-repeat h-fit md:h-[450px] w-full"
 >
-  <div class="glide max-w-[1440px] mx-auto">
+  <div class="glide max-w-[1600px] mx-auto">
     <div
       class="glide__track"
       data-glide-el="track"
@@ -23,7 +23,7 @@ const bgHero = resp.filter((slide) => slide.type === 'bg-hero');
               <article>
                 <div class="overflow-hidden w-full h-[450px]">
                   <img
-                    class="glide__img h-full w-full object-contain"
+                    class="glide__img h-[450px] w-full object-cover object-center"
                     src={slide.image}
                     alt={slide.altImage}
                   />
