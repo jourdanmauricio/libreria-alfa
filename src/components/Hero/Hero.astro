@@ -77,31 +77,45 @@ const bgHero = resp.filter((slide) => slide.type === 'bg-hero');
 
 <script>
   import Glide from '@glidejs/glide';
+  let initialized = false;
 
-  new Glide('.glide', {
-    type: 'carousel',
-    startAt: 0,
-    // perView: 3,
-    // gap: 40,
-    autoplay: 3000,
-    hoverpause: true,
-    swipeThreshold: 80,
-    focusAt: 'center',
-    // rewind: true,
-    // animationDuration: 1000,
-    rewindDuration: 3000,
-    animationTimingFunc: 'linear', // easy, easy-in, easy-out, easy-in-out, bounce
-    // peek: {
-    //   before: 100,
-    //   after: 50,
-    // },
-    // breakpoints: {
-    //   1024: {
-    //     perView: 2,
-    //   },
-    //   600: {
-    //     perView: 1,
-    //   },
-    // },
-  }).mount();
+  function initialize() {
+    new Glide('.glide', {
+      type: 'carousel',
+      startAt: 0,
+      // perView: 3,
+      // gap: 40,
+      autoplay: 3000,
+      hoverpause: true,
+      swipeThreshold: 80,
+      focusAt: 'center',
+      // rewind: true,
+      // animationDuration: 1000,
+      rewindDuration: 3000,
+      animationTimingFunc: 'linear', // easy, easy-in, easy-out, easy-in-out, bounce
+      // peek: {
+      //   before: 100,
+      //   after: 50,
+      // },
+      // breakpoints: {
+      //   1024: {
+      //     perView: 2,
+      //   },
+      //   600: {
+      //     perView: 1,
+      //   },
+      // },
+    }).mount();
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!initialized) {
+      initialize();
+    }
+  });
+
+  document.addEventListener('astro:after-swap', () => {
+    if (!initialized) {
+      initialize();
+    }
+  });
 </script>
