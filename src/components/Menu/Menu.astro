@@ -1,6 +1,6 @@
 ---
 import FavoriteMenu from '@components/Favorite/FavoriteMenu';
-// import FavoritesFlyout from '@components/Favorite/FavoritesFlyout';
+import CartMenu from '@components/Cart/CartMenu';
 import { getNetworks } from '@services/networks';
 import { getOffices } from '@services/offices';
 
@@ -172,7 +172,7 @@ const office = offices[0];
                 ? 'text-[#f98b24]'
                 : 'text-slate-950'
             }`}
-            href="/libreria-alfa/productos/1"
+            href="/libreria-alfa/productos/1/"
           >
             <!-- scroll={false} -->
              Productos
@@ -213,12 +213,15 @@ const office = offices[0];
         <FavoriteMenu client:only />
       </div>
 
-      <button
+      <div>
+        <CartMenu client:only />
+      </div>
+      <!-- <button
         class="w-6 h-6"
         id="cart"
       >
         <Icon name="mdi:cart-outline" />
-      </button>
+      </button> -->
 
       <button
         type="button"
@@ -305,7 +308,6 @@ const office = offices[0];
       </ul>
     </div>
   </div>
-  <!-- <FavoritesFlyout client:only /> -->
 </nav>
 
 <style>
@@ -393,8 +395,8 @@ const office = offices[0];
     event.stopPropagation();
   });
 
-  const $cart = document.getElementById('cart');
-  $cart.addEventListener('click', () => {
-    console.log('Cart');
-  });
+  // const $cart = document.getElementById('cart');
+  // $cart.addEventListener('click', () => {
+  //   console.log('Cart');
+  // });
 </script>

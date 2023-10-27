@@ -1,10 +1,12 @@
-import { useStore } from '@nanostores/react';
 import React, { useRef, useEffect } from 'react';
+import { useStore } from '@nanostores/react';
+import AddToCart from '../Cart/AddToCart';
 import {
   isFavoritesOpen,
   favoritesItems,
   removeFavoriteItem,
 } from '@stores/favorites';
+import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
 
 export default function FavoritesFlyout({ noCloseRef }) {
   const $isFavoritesOpen = useStore(isFavoritesOpen);
@@ -25,7 +27,6 @@ export default function FavoritesFlyout({ noCloseRef }) {
   };
 
   const handleClickOutside = (event) => {
-    // console.log('noCloseRef', noCloseRef);
     if (
       componenteRef.current &&
       !componenteRef.current.contains(event.target) &&
@@ -38,7 +39,7 @@ export default function FavoritesFlyout({ noCloseRef }) {
   return (
     <>
       <div
-        className={`absolute backdrop-blur-sm left-0 right-0 top-10 md:top-12 h-screen opacity-100 z-[5] ${
+        className={`absolute backdrop-blur-sm left-0 right-0 top-10 md:top-12 h-screen opacity-100 z-[5] min-w-[300px] ${
           $isFavoritesOpen ? 'block' : 'hidden'
         } `}
       ></div>
@@ -58,29 +59,39 @@ export default function FavoritesFlyout({ noCloseRef }) {
         <hr />
         <ul>
           {$favoritesItems.map((item) => (
-            <li
-              key={item.id}
-              className="text-sm flex gap-2 border-b-2"
-            >
-              <img
-                className="w-14"
-                src={item.image}
-                alt={item.altImage}
-              />
-              <div className="w-full flex flex-col justify-between">
-                <p>{item.name}</p>
-                <div className="flex justify-between text-gray-800">
-                  {/* <p>{item.seller_custom_field}</p> */}
-                  <p>${item.price}</p>
-                  <span
-                    onClick={(e) => handleDelete(item.id)}
-                    className="text-xs cursor-pointer p-1 rounded-md text-red-500  hover:bg-red-50"
-                  >
-                    Borrar
-                  </span>
+            <div key={item.id}>
+              <li className="text-sm flex items-center gap-2 border-b-2 py-2">
+                {item.image !== null ? (
+                  <img
+                    className="w-20 h-20 object-contain"
+                    src={item.image}
+                    alt={item.altImage}
+                    loading="lazy"
+                  />
+                ) : (
+                  <img
+                    className="w-20 h-20 object-contain mx-auto"
+                    src={sinImagen.src}
+                    alt="Sin imagen disponible"
+                    loading="lazy"
+                  />
+                )}
+                <div className="w-full flex flex-col justify-between gap-4">
+                  <p>{item.name}</p>
+                  <div className="flex justify-between items-center text-gray-800">
+                    <p>${item.price}</p>
+                    <AddToCart prod={item} />
+                    <span
+                      onClick={(e) => handleDelete(item.id)}
+                      className="text-xs cursor-pointer p-1 rounded-md text-red-500  hover:bg-red-50"
+                    >
+                      Borrar
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+              <hr />
+            </div>
           ))}
         </ul>
       </aside>

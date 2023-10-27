@@ -1,5 +1,6 @@
 ---
 import FavoriteBtn from '@components/Favorite/FavoriteBtn.jsx';
+import AddToCart from '@components/Cart/AddToCart.jsx';
 import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
 
 interface Props {
@@ -36,10 +37,19 @@ const { prod } = Astro.props;
       )
     }
   </div>
-  <div class="px-4">
+  <div class="px-4 py-4">
     <h3 class="font-semibold min-h-[3rem]">{prod.name}</h3>
-    <p class="py-4">${prod.price}</p>
+    <div class="flex items-center justify-around mt-4">
+      <p class="py-4">${prod.price}</p>
+      <div class="min-w-[150px]">
+        <AddToCart
+          prod={prod}
+          client:only
+        />
+      </div>
+    </div>
   </div>
+
   <FavoriteBtn
     id={prod.id}
     image={prod.image}

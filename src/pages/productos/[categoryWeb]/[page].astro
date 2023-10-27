@@ -70,8 +70,6 @@ const { page, cats, products } = Astro.props;
   const $lista = document.getElementById('lista');
   const $pagination = document.getElementById('pagination');
 
-  console.log('lista / pagination', $lista, $pagination);
-
   document.addEventListener('show-result-search', (event) => {
     const customEvent = event as CustomEvent;
     if (customEvent.detail === true) {

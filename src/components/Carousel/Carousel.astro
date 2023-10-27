@@ -1,6 +1,4 @@
 ---
-import sinImagen from '@assets/images/sin-imagen-disponible.jpg';
-import FavoriteBtn from '@components/Favorite/FavoriteBtn.jsx';
 import ProductCard from '@components/ProductCard/ProductCard.astro';
 
 import { getProdsLib } from '@services/products';
@@ -18,10 +16,10 @@ const products = resp.filter(
 );
 ---
 
-<section class="max-w-[1440px] mx-auto">
-  <h2 class="py-16 p-2 text-center border-4">Productos Nuevos</h2>
+<section class="max-w-[1024px] mx-auto">
+  <h2 class="py-8 p-2 text-center">Novedades</h2>
 
-  <div class="px-4 lg:px-16 my-20 w-full mx-auto">
+  <div class="px-4 lg:px-16 w-full mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {products.map((prod) => <ProductCard prod={prod} />)}
     </div>
