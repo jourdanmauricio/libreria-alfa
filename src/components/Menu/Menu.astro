@@ -208,7 +208,7 @@ const office = offices[0];
     </div>
 
     <!-- cart / favorites -->
-    <div class="flex gap-4">
+    <div class="flex gap-6">
       <div class="w-6">
         <FavoriteMenu client:only />
       </div>
@@ -216,12 +216,6 @@ const office = offices[0];
       <div>
         <CartMenu client:only />
       </div>
-      <!-- <button
-        class="w-6 h-6"
-        id="cart"
-      >
-        <Icon name="mdi:cart-outline" />
-      </button> -->
 
       <button
         type="button"
@@ -272,11 +266,11 @@ const office = offices[0];
         <li class="ml-4 p-6">
           <a
             class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
-              Astro.url.pathname === '/libreria-alfa/productos/'
+              Astro.url.pathname.includes('/libreria-alfa/productos/')
                 ? 'text-[#f98b24]'
                 : 'text-slate-950'
             }`}
-            href="/libreria-alfa/productos/"
+            href="/libreria-alfa/productos/1/"
           >
             Productos
           </a>
