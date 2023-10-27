@@ -338,59 +338,69 @@ const office = offices[0];
   }
 </style>
 
-<script>
-  const $openMenu = document.getElementById('open-menu');
-  const $menuMobile = document.getElementById('menu-mobile');
-  const $menu = document.getElementById('menu');
-  const $backdrop = document.getElementById('backdrop');
+<script is:inline>
+let initialized = false;
+function initialize() {
+  const $openMenu = document.getElementById( 'open-menu' );
+  const $menuMobile = document.getElementById( 'menu-mobile' );
+  const $menu = document.getElementById( 'menu' );
+  const $backdrop = document.getElementById( 'backdrop' );
 
-  // Agregar un event listener al botón para abrir el menú
-  $openMenu.addEventListener('click', openCloseMenu);
+  $openMenu.addEventListener( 'click', openCloseMenu );
 
   function openCloseMenu() {
     // Alternar la visibilidad del menú móvil
-    if ($menuMobile.classList.contains('left-0')) {
+    if ( $menuMobile.classList.contains( 'left-0' ) ) {
       // Saco
-      $menuMobile.classList.add('-left-full');
-      $menuMobile.classList.remove('left-0');
-      $backdrop.classList.add('opacity-0', 'hidden');
-      $backdrop.classList.remove('opacity-100', 'block');
+      $menuMobile.classList.add( '-left-full' );
+      $menuMobile.classList.remove( 'left-0' );
+      $backdrop.classList.add( 'opacity-0', 'hidden' );
+      $backdrop.classList.remove( 'opacity-100', 'block' );
     } else {
       // Pongo
-      $menuMobile.classList.add('left-0');
-      $menuMobile.classList.remove('-left-full');
-      $backdrop.classList.remove('opacity-0', 'hidden');
-      $backdrop.classList.add('opacity-100', 'block');
+      $menuMobile.classList.add( 'left-0' );
+      $menuMobile.classList.remove( '-left-full' );
+      $backdrop.classList.remove( 'opacity-0', 'hidden' );
+      $backdrop.classList.add( 'opacity-100', 'block' );
     }
   }
   // Agregar event listener al menú para cerrarlo al hacer clic en un enlace
-  $menu.addEventListener('click', () => {
-    $menuMobile.style.display = 'none';
-  });
+  $menu.addEventListener( 'click', () => {
+    $menuMobile.classList.add( '-left-full' );
+    $menuMobile.classList.remove( 'left-0' );
+  } );
 
   // Agregar event listener al documento para cerrar el menú al hacer clic fuera de él
-  document.addEventListener('click', (event) => {
+  document.addEventListener( 'click', ( event ) => {
     if (
       event.target !== $openMenu &&
       event.target !== $menu &&
-      !$menu.contains(event.target as HTMLButtonElement)
+      // !$menu.contains( event.target as HTMLButtonElement )
+      !$menu.contains( event.target )
     ) {
-      // $menuMobile.style.display = 'none';
-      $menuMobile.classList.add('-left-full');
-      $menuMobile.classList.remove('left-0');
-      $backdrop.classList.add('opacity-0', 'hidden');
-      $backdrop.classList.remove('opacity-100', 'block');
+      $menuMobile.classList.add( '-left-full' );
+      $menuMobile.classList.remove( 'left-0' );
+      $backdrop.classList.add( 'opacity-0', 'hidden' );
+      $backdrop.classList.remove( 'opacity-100', 'block' );
     }
-  });
+  } );
 
-  const $icon = document.getElementById('icon');
-  $icon.addEventListener('click', (event) => {
+  const $icon = document.getElementById( 'icon' );
+  $icon.addEventListener( 'click', ( event ) => {
     openCloseMenu();
     event.stopPropagation();
-  });
+  } );
+}
 
-  // const $cart = document.getElementById('cart');
-  // $cart.addEventListener('click', () => {
-  //   console.log('Cart');
-  // });
+window.addEventListener( 'DOMContentLoaded', () => {
+  if ( !initialized ) {
+    initialize();
+  }
+} );
+
+document.addEventListener( 'astro:after-swap', () => {
+  if ( !initialized ) {
+    initialize();
+  }
+} );
 </script>
