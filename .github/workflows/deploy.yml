@@ -13,6 +13,8 @@ on:
 env:
   BACKEND: https://api.lumau.com.ar/v1
   URL: https://jourdanmauricio.github.io/libreria-alfa
+  PUBLIC_BACKEND: https://api.lumau.com.ar/v1
+  PUBLIC_URL: https://jourdanmauricio.github.io/libreria-alfa
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
