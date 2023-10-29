@@ -16,9 +16,14 @@ const AddToCart = ({ prod }) => {
   };
 
   const handleAddToCart = () => {
-    console.log('Add', prod.id);
-    prod.quantity = 1;
-    addCartItem(prod);
+    addCartItem({
+      id: prod.id,
+      name: prod.name,
+      quantity: 1,
+      price: prod.price,
+      image: prod.image,
+      altImage: prod.altImage,
+    });
   };
   return (
     <>
@@ -26,7 +31,7 @@ const AddToCart = ({ prod }) => {
         <div className="flex justify-center border border-gray-700 rounded w-fit mx-auto">
           <button
             onClick={() => subtractCartItem(prod.id)}
-            className="border-r border-gray-700 hover:bg-[#f98b24]"
+            className="border-r border-gray-700 hover:bg-[#f98b24] px-2"
           >
             <Icon
               icon="mdi:minus"
@@ -35,7 +40,6 @@ const AddToCart = ({ prod }) => {
           </button>
 
           <div className="relative py-2 px-4 flex">
-            {/* {getQuantity(prod.id)} */}
             <Icon
               icon="mdi:cart"
               className="w-6 h-6 text-slate-700"
@@ -47,7 +51,7 @@ const AddToCart = ({ prod }) => {
 
           <button
             onClick={handleAddToCart}
-            className="border-l border-gray-700 hover:bg-[#f98b24]"
+            className="border-l border-gray-700 hover:bg-[#f98b24] px-2"
           >
             <Icon
               icon="mdi:plus"

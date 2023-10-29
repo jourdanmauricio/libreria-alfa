@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CheckoutOrder from '@components/Checkout/CheckoutOrder';
+---
+
+<Layout title="Librería Alfa">
+  <main class="max-w-[1024px] mx-auto relative p-4">
+    <h1 class="text-2xl text-center py-8">Finalizar pedido</h1>
+
+    <CheckoutOrder client:load />
+  </main>
+</Layout>

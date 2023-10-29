@@ -1,8 +1,8 @@
-import FavoritesFlyout from '@components/Favorite/FavoritesFlyout';
+import { useRef } from 'react';
 import { useStore } from '@nanostores/react';
-import { Icon } from '@iconify/react';
 import { favoritesItems, isFavoritesOpen } from '@stores/favorites';
-import { useRef, useState } from 'react';
+import FavoritesFlyout from '@components/Favorite/FavoritesFlyout';
+import { Icon } from '@iconify/react';
 
 const FavoriteMenu = () => {
   const $favorites = useStore(favoritesItems);
