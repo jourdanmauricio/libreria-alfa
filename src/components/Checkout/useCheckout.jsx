@@ -93,7 +93,7 @@ const useCheckout = () => {
 
   const getQuantity = (id) => {
     const found = $cartItems.find((cartItem) => cartItem.id === id);
-    return found.quantity || 0;
+    return found ? found.quantity : null;
   };
 
   const getAmount = () => {

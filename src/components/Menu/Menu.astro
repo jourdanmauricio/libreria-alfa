@@ -15,6 +15,7 @@ const office = offices[0];
   id="inicio"
   class="relative bg-slate-200 text-sm text-slate-950 w-full"
 >
+  <!-- TOP -->
   <div
     class="max-w-[1600px] mx-auto flex items-center justify-between gap-4 pr-4 z-10 px-6 h-10"
   >
@@ -112,12 +113,14 @@ const office = offices[0];
   </div>
 </div>
 
+<!-- Background overlay -->
 <div
   id="backdrop"
   class="fixed backdrop-blur-sm left-0 right-0 h-full opacity-0 hidden z-[5]"
 >
 </div>
 
+<!-- Navigation -->
 <nav
   class="sticky min-h-[40px] top-0 items-center bg-slate-200 shadow-[0_4px_9px_0px_rgba(0,0,0,0.5)] z-10"
 >
@@ -209,11 +212,11 @@ const office = offices[0];
 
     <!-- cart / favorites -->
     <div class="flex gap-6">
-      <div class="w-6">
+      <div class="w-6 h-6">
         <FavoriteMenu client:only />
       </div>
 
-      <div>
+      <div class="w-6 h-6">
         <CartMenu client:only />
       </div>
 
@@ -228,6 +231,7 @@ const office = offices[0];
         />
       </button>
     </div>
+
     <!-- mobile menu -->
     <div
       class="absolute top-10 w-[75%] sm:w-[50%] bg-slate-200 -left-full transition-all duration-500 z-40"

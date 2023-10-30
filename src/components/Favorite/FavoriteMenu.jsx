@@ -11,7 +11,6 @@ const FavoriteMenu = () => {
 
   const handleClick = () => {
     isFavoritesOpen.set(!$isFavoritesOpen);
-    // console.log('noCloseRef', noCloseRef);
   };
 
   return (
