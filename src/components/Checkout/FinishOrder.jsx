@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import useCheckout from './useCheckout';
 import { getNetworks } from '../../services/networks';
 import { parseCurrency } from '../../utils/parse';
-import { cartItems } from '../../store/cart';
+import { cartItems, removeCartItem } from '../../store/cart';
 import { useStore } from '@nanostores/react';
 
 const FinishOrder = ({ order }) => {
