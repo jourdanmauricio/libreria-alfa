@@ -20,7 +20,7 @@ const OrderItem = ({ item, index }) => {
         animate="visible"
         exit="hidden"
         layoutId={item.id}
-        custom={{ delay: (index + 1) * 0.2 }}
+        custom={{ delay: (index + 1) * 0.1 }}
         className="text-sm flex items-center gap-2 border-b-2 py-2"
       >
         {item.image !== null ? (

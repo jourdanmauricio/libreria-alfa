@@ -33,6 +33,7 @@ const useCheckout = () => {
     }
 
     const obj = {
+      id: new Date().valueOf(),
       buyer: [
         {
           name: info.name,
@@ -62,7 +63,7 @@ const useCheckout = () => {
       const newOrder = await createOrder(obj);
 
       console.log('setOrder');
-      $cartItems.map((item) => removeCartItem(item.id));
+      // $cartItems.map((item) => removeCartItem(item.id));
       console.log('delete items card');
       return newOrder;
     } catch (err) {

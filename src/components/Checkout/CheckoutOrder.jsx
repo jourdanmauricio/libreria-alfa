@@ -16,10 +16,10 @@ const CheckoutOrder = () => {
     setStep(1);
   }, []);
 
-  if ($cartItems.length === 0) return <WithoutProducst />;
+  // if ($cartItems.length === 0 && !order) return <WithoutProducst />;
 
   return (
-    <div>
+    <div className="max-w-[500px] mx-auto">
       <motion.h1
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -33,16 +33,22 @@ const CheckoutOrder = () => {
         Finalizar pedido
       </motion.h1>
 
-      <motion.section layout>
-        {step === 1 && <Order handleStep={setStep} />}
-        {step === 2 && (
-          <PersonalInfo
-            handleStep={setStep}
-            setOrder={setOrder}
-          />
-        )}
-        {step === 3 && <FinishOrder order={order} />}
-      </motion.section>
+      {/* <motion.section layout> */}
+      {$cartItems.length === 0 && !order ? (
+        <WithoutProducst />
+      ) : (
+        <>
+          {step === 1 && <Order handleStep={setStep} />}
+          {step === 2 && (
+            <PersonalInfo
+              handleStep={setStep}
+              setOrder={setOrder}
+            />
+          )}
+          {step === 3 && <FinishOrder order={order} />}
+        </>
+      )}
+      {/* </motion.section> */}
     </div>
   );
 };

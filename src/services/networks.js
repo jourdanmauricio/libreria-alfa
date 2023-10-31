@@ -1,5 +1,5 @@
-const BACKEND = import.meta.env.BACKEND;
-const URL = import.meta.env.URL;
+const BACKEND = import.meta.env.PUBLIC_BACKEND;
+const URL = import.meta.env.PUBLIC_URL;
 
 export const getNetworks = async () => {
   let networks = [];

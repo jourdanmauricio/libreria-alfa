@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useCheckout from './useCheckout.jsx';
 import Spinner from '../Spinner/Spinner.jsx';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const PersonalInfo = ({ handleStep, setOrder }) => {
   const [loading, setLoading] = useState(false);
@@ -21,11 +22,17 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
   };
 
   return (
-    <>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.8,
+      }}
+    >
       <form
         id="order-form"
         onSubmit={onSubmit}
-        className="max-w-[500px] mx-auto flex flex-col mb-8 "
+        className="flex flex-col mb-8 "
         noValidate
       >
         {loading && <Spinner />}
@@ -131,80 +138,101 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
           </label>
         </div>
 
-        {form.delivery && (
-          <>
-            <div className="field">
-              <div className="error__field">
-                <span
-                  className={`span__error ${!errors.state ? 'error__msg' : ''}`}
-                >
-                  {errors.state}
-                </span>
-              </div>
-              <input
-                className={`input__field border py-1 px-2 w-full rounded ${
-                  errors.state ? 'has__error' : ''
-                }`}
-                type="text"
-                name="state"
-                id="state"
-                value={form.state}
-                placeholder=" "
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <label htmlFor="name">Provincia</label>
-            </div>
+        <AnimatePresence>
+          {form.delivery && (
+            <motion.div
+              initial={{
+                height: 0,
+                opacity: 0,
+              }}
+              animate={{
+                height: 'auto',
+                opacity: 1,
+              }}
+              exit={{
+                height: 0,
+                opacity: 0,
+              }}
+            >
+              <>
+                <div className="field">
+                  <div className="error__field">
+                    <span
+                      className={`span__error ${
+                        !errors.state ? 'error__msg' : ''
+                      }`}
+                    >
+                      {errors.state}
+                    </span>
+                  </div>
+                  <input
+                    className={`input__field border py-1 px-2 w-full rounded ${
+                      errors.state ? 'has__error' : ''
+                    }`}
+                    type="text"
+                    name="state"
+                    id="state"
+                    value={form.state}
+                    placeholder=" "
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <label htmlFor="name">Provincia</label>
+                </div>
 
-            <div className="field">
-              <div className="error__field">
-                <span
-                  className={`span__error ${!errors.city ? 'error__msg' : ''}`}
-                >
-                  {errors.city}
-                </span>
-              </div>
-              <input
-                className={`input__field border py-1 px-2 w-full rounded ${
-                  errors.city ? 'has__error' : ''
-                }`}
-                type="text"
-                name="city"
-                id="city"
-                value={form.city}
-                placeholder=" "
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <label htmlFor="name">Ciudad</label>
-            </div>
+                <div className="field">
+                  <div className="error__field">
+                    <span
+                      className={`span__error ${
+                        !errors.city ? 'error__msg' : ''
+                      }`}
+                    >
+                      {errors.city}
+                    </span>
+                  </div>
+                  <input
+                    className={`input__field border py-1 px-2 w-full rounded ${
+                      errors.city ? 'has__error' : ''
+                    }`}
+                    type="text"
+                    name="city"
+                    id="city"
+                    value={form.city}
+                    placeholder=" "
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <label htmlFor="name">Ciudad</label>
+                </div>
 
-            <div className="field">
-              <div className="error__field">
-                <span
-                  className={`span__error ${
-                    !errors.address ? 'error__msg' : ''
-                  }`}
-                >
-                  {errors.address}
-                </span>
-              </div>
-              <input
-                className={`input__field border py-1 px-2 w-full rounded ${
-                  errors.address ? 'has__error' : ''
-                }`}
-                type="text"
-                name="address"
-                id="address"
-                value={form.address}
-                placeholder=" "
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <label htmlFor="name">Domicilio</label>
-            </div>
-          </>
-        )}
+                <div className="field">
+                  <div className="error__field">
+                    <span
+                      className={`span__error ${
+                        !errors.address ? 'error__msg' : ''
+                      }`}
+                    >
+                      {errors.address}
+                    </span>
+                  </div>
+                  <input
+                    className={`input__field border py-1 px-2 w-full rounded ${
+                      errors.address ? 'has__error' : ''
+                    }`}
+                    type="text"
+                    name="address"
+                    id="address"
+                    value={form.address}
+                    placeholder=" "
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <label htmlFor="name">Domicilio</label>
+                </div>
+              </>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="field">
           <div className="error__field">
             <span
@@ -239,7 +267,7 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
           </button>
         </div>
       </form>
-    </>
+    </motion.section>
   );
 };
 export default PersonalInfo;
