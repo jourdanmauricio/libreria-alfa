@@ -4,6 +4,7 @@ import useCheckout from './useCheckout';
 import { getNetworks } from '../../services/networks';
 import { parseCurrency } from '../../utils/parse';
 import { addCartItem, subtractCartItem } from '../../store/cart';
+import { useStore } from '@nanostores/react';
 
 const FinishOrder = ({ order }) => {
   const { getAmount } = useCheckout();
