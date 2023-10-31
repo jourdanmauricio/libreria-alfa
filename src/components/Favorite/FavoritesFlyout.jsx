@@ -78,7 +78,7 @@ export default function FavoritesFlyout({ noCloseRef }) {
                 )}
                 <div className="w-full flex flex-col justify-between gap-4">
                   <p>{item.name}</p>
-                  <div className="flex justify-between items-center text-gray-800">
+                  <div className="flex flex-col sm:flex-row justify-between items-center text-gray-800 gap-4">
                     <p>${item.price}</p>
                     <AddToCart prod={item} />
                     <span
