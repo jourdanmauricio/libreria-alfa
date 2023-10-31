@@ -157,20 +157,6 @@ const office = offices[0];
         <li class="ml-4">
           <a
             class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
-              Astro.url.pathname === '/libreria-alfa/nosotros/'
-                ? 'text-[#f98b24]'
-                : 'text-slate-950'
-            }`}
-            href="/libreria-alfa/nosotros/"
-          >
-            <!-- scroll={false} -->
-             Sobre nosotros
-          </a>
-        </li>
-
-        <li class="ml-4">
-          <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
               Astro.url.pathname.includes('/libreria-alfa/productos/')
                 ? 'text-[#f98b24]'
                 : 'text-slate-950'
@@ -192,6 +178,19 @@ const office = offices[0];
           >
             <!-- scroll={false} -->
              Impresiones
+          </a>
+        </li>
+        <li class="ml-4">
+          <a
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/checkout/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/checkout/"
+          >
+            <!-- scroll={false} -->
+             Ver carrito
           </a>
         </li>
         <li class="ml-4">
@@ -253,20 +252,6 @@ const office = offices[0];
             Inicio
           </a>
         </li>
-
-        <li class="ml-4 p-6">
-          <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
-              Astro.url.pathname === '/libreria-alfa/nosotros/'
-                ? 'text-[#f98b24]'
-                : 'text-slate-950'
-            }`}
-            href="/libreria-alfa/nosotros/"
-          >
-            Sobre nosotros
-          </a>
-        </li>
-
         <li class="ml-4 p-6">
           <a
             class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
@@ -289,6 +274,18 @@ const office = offices[0];
             href="/libreria-alfa/impresiones/"
           >
             Impresiones
+          </a>
+        </li>
+        <li class="ml-4 p-6">
+          <a
+            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+              Astro.url.pathname === '/libreria-alfa/checkout/'
+                ? 'text-[#f98b24]'
+                : 'text-slate-950'
+            }`}
+            href="/libreria-alfa/checkout/"
+          >
+            Ver carrito
           </a>
         </li>
         <li class="ml-4 p-6">

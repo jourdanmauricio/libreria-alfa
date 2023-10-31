@@ -16,8 +16,6 @@ const CheckoutOrder = () => {
     setStep(1);
   }, []);
 
-  // if ($cartItems.length === 0 && !order) return <WithoutProducst />;
-
   return (
     <div className="max-w-[500px] mx-auto">
       <motion.h1
@@ -33,7 +31,6 @@ const CheckoutOrder = () => {
         Finalizar pedido
       </motion.h1>
 
-      {/* <motion.section layout> */}
       {$cartItems.length === 0 && !order ? (
         <WithoutProducst />
       ) : (
@@ -48,7 +45,6 @@ const CheckoutOrder = () => {
           {step === 3 && <FinishOrder order={order} />}
         </>
       )}
-      {/* </motion.section> */}
     </div>
   );
 };
