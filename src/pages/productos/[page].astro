@@ -7,7 +7,8 @@ import ProductCard from '@components/ProductCard/ProductCard.astro';
 import Pagination from '@components/Pagination/Pagination.astro';
 
 export async function getStaticPaths({ paginate }) {
-  const products = await getProdsLib();
+  const prods = await getProdsLib();
+  const products = prods.filter((prod) => prod.status === 'active');
   let cats = products.map((product) => product.categoryWeb);
   cats = cats.filter((item, index) => cats.indexOf(item) === index);
   cats = cats.sort();

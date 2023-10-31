@@ -12,7 +12,9 @@ const { section, category } = Astro.props;
 
 const resp = await getProdsLib();
 const products = resp.filter(
-  (prod) => prod.category === category || prod.sections.includes(section)
+  (prod) =>
+    prod.category === category ||
+    (prod.sections.includes(section) && prod.status === 'active')
 );
 ---
 
