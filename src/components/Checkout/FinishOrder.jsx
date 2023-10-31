@@ -19,6 +19,11 @@ const FinishOrder = ({ order }) => {
     return `*** Envío ***\n* Provincia: ${order.deliveryInfo[0].state}\n* Ciudad: ${order.deliveryInfo[0].city}\n* Dirección: ${order.deliveryInfo[0].address}\n`;
   }, [order]);
 
+  const observation = useMemo(
+    () => `*** Observación ***\n${order.observation}`,
+    [order]
+  );
+
   const products = useMemo(
     () =>
       order.items
@@ -42,7 +47,7 @@ const FinishOrder = ({ order }) => {
       const data = await getNetworks();
       let whatsapp = data.whatsapp.split('=')[0];
       whatsapp = `${whatsapp}=${encodeURIComponent(
-        `${buyer}\n${products}\n${delivery}`
+        `${buyer}\n${products}\n${delivery}\n${observation}`
       )}`;
 
       // $cartItems.map((item) => removeCartItem(item.id));
