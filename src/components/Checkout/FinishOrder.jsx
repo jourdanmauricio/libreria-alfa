@@ -3,9 +3,11 @@ import { Icon } from '@iconify/react';
 import useCheckout from './useCheckout';
 import { getNetworks } from '../../services/networks';
 import { parseCurrency } from '../../utils/parse';
+import { addCartItem, subtractCartItem } from '../../store/cart';
 
 const FinishOrder = ({ order }) => {
   const { getAmount } = useCheckout();
+  const $cartItems = useStore(cartItems);
   const [message, setMessage] = useState();
 
   const buyer = useMemo(
@@ -50,7 +52,7 @@ const FinishOrder = ({ order }) => {
         `${buyer}\n${products}\n${delivery}\n${observation}`
       )}`;
 
-      // $cartItems.map((item) => removeCartItem(item.id));
+      $cartItems.map((item) => removeCartItem(item.id));
       setMessage(whatsapp);
     };
     fetchData();
