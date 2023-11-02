@@ -49,6 +49,7 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
             type="text"
             name="name"
             id="name"
+            autocomplete="name"
             value={form.name}
             placeholder=" "
             onChange={handleChange}
