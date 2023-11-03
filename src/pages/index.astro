@@ -4,6 +4,7 @@ import '@styles/glide.css';
 import Layout from '../layouts/Layout.astro';
 import Hero from '@components/Hero/Hero.astro';
 import Carousel from '@components/Carousel/Carousel.astro';
+import Subscription from '@components/Subscription/Subscription.astro';
 ---
 
 <Layout title="Librería Alfa">
@@ -15,6 +16,8 @@ import Carousel from '@components/Carousel/Carousel.astro';
   <div class="w-full h-[600px] flex items-center justify-center">
     <h1 class="text-slate-50 text-2xl">Welcome to Astro</h1>
   </div>
+
+  <Subscription />
 
   <footer class="h-40 bg-yellow-600">HOLAS</footer>
 </Layout>

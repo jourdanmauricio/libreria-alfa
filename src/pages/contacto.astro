@@ -5,6 +5,7 @@ import ContactForm from '@components/Contact/ContactForm.astro';
 import { getOffices } from '@services/offices';
 import heroContact from '@assets/images/pizarra1.png';
 import { Icon } from 'astro-icon';
+import Subscription from '@components/Subscription/Subscription.astro';
 
 const offices = await getOffices();
 ---
@@ -95,7 +96,7 @@ const offices = await getOffices();
       </div>
       <div id="map"></div>
     </section>
-    <!-- <Subscription /> -->
+    <Subscription />
   </main>
 
   <style>
