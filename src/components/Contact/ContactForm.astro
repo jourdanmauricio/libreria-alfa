@@ -1,0 +1,240 @@
+---
+import { Icon } from 'astro-icon';
+
+const BACKEND = import.meta.env.BACKEND;
+const URL = import.meta.env.URL;
+---
+
+<div class="w-full sm:w-1/2 bg-[#f4ecea]">
+  <div
+    id="response-contact-form"
+    class="flex-col justify-center items-center h-full hidden"
+  >
+    <p
+      id="form-contact-result"
+      class="text-xl font-semibold"
+    >
+      Mensaje enviado!
+    </p>
+    <p
+      id="contact-message"
+      class="mt-4"
+    >
+      En breve nos pondremos en contacto.
+    </p>
+    <p>Muchas gracias.</p>
+  </div>
+
+  <form
+    class="flex flex-col gap-2 px-4 lg:px-8 w-full pt-4"
+    id="contact-form"
+    novalidate
+  >
+    <!-- NAME -->
+    <div>
+      <label
+        for="name"
+        class="block text-sm font-medium text-gray-900"
+        >Nombre</label
+      >
+      <div class="relative">
+        <div
+          class="absolute -top-6 inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+        >
+          <Icon
+            name="mdi:account"
+            class="w-5 h-5 text-gray-500"
+          />
+        </div>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="border text-sm rounded-lg block w-full pl-10 p-2 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
+          data-pattern="^[A-Za-z ñáéíóúÑÁÉÍÓÚ]{0,150}$"
+          data-error="El nombre no es válido"
+          placeholder="Nombre"
+          required
+        />
+        <span class="text-sm text-red-500 transition-opacity opacity-0"
+          >Error</span
+        >
+      </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div>
+      <label
+        for="email"
+        class="block text-sm font-medium text-gray-900"
+        >Email</label
+      >
+      <div class="relative">
+        <div
+          class="absolute -top-6 inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+        >
+          <Icon
+            name="mdi:email"
+            class="w-5 h-5 text-gray-500"
+          />
+        </div>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          class="border text-sm rounded-lg block w-full pl-10 p-2 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
+          data-pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+          data-error="Email inválido"
+          placeholder="name@email.com"
+        />
+        <span class="text-sm text-red-500 transition-opacity opacity-0"
+          >Error</span
+        >
+      </div>
+    </div>
+
+    <!-- PHONE -->
+    <div>
+      <label
+        for="phone"
+        class="block text-sm font-medium text-gray-900"
+        >Teléfono</label
+      >
+      <div class="relative">
+        <div
+          class="absolute -top-6 inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+        >
+          <Icon
+            name="mdi:phone"
+            class="w-5 h-5 text-gray-500"
+          />
+        </div>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          class="border text-sm rounded-lg block w-full pl-10 p-2 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
+          data-pattern="^[0-9 ()]{7,15}$"
+          data-error="Teléfono inválido"
+          placeholder="(02262) 444 xxx"
+          required
+        />
+        <span class="text-sm text-red-500 transition-opacity opacity-0"
+          >Error</span
+        >
+      </div>
+    </div>
+
+    <!-- COMENTARIO -->
+    <div class="flex flex-col w-full">
+      <label
+        class="text-sm font-medium text-gray-900"
+        for="comment"
+        >Mensaje
+      </label>
+      <textarea
+        id="comment"
+        name="comment"
+        rows="4"
+        class="border text-sm rounded-lg block w-full pl-2 p-2 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
+        data-pattern="^[a-zA-Z0-9 ÑñÁÉÍÓÚáéíóú]{3,255}$"
+        data-error="Ingrese letras o números"
+        placeholder="Mensaje"
+        required
+      ></textarea>
+      <span class="text-sm text-red-500 transition-opacity opacity-0"
+        >Error</span
+      >
+    </div>
+    <button
+      class="mt-6 p-2 px-4 h-10 text-slate-950 bg-[#f98b24] rounded w-full flex items-center justify-center"
+      ><span id="send-btn">Enviar</span></button
+    >
+  </form>
+</div>
+
+<style>
+  .spinner-btn {
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spinner 1s ease-out infinite;
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<script define:vars={{ BACKEND, URL }}>
+  const sendBtn = document.getElementById('send-btn');
+
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', (e) => sendform(e));
+
+  async function sendform(e) {
+    e.preventDefault();
+    const fieldsToValidate = document
+      .getElementById(e.target.id)
+      .querySelectorAll('[required], [data-pattern]');
+
+    let error = false;
+    for (let i = 0; i < fieldsToValidate.length; i++) {
+      const field = fieldsToValidate[i];
+      const spanError = field.nextSibling;
+      spanError.classList.add('opacity-0');
+      if (field.hasAttribute('required') && field.value.trim().length === 0) {
+        spanError.textContent = 'Requerido';
+        spanError.classList.remove('opacity-0');
+        spanError.classList.add('opacity-1');
+        error = true;
+      }
+      if (field.value.trim().length > 0 && field.hasAttribute('data-pattern')) {
+        let regex = new RegExp(field.dataset.pattern);
+        if (regex.exec(field.value) === null) {
+          spanError.textContent = field.dataset.error;
+          spanError.classList.remove('opacity-0');
+          spanError.classList.add('opacity-1');
+          error = true;
+        }
+      }
+    }
+    if (error) return error;
+
+    const data = Object.fromEntries(new FormData(e.target));
+    data.url = URL;
+    const responseContactForm = document.getElementById(
+      'response-contact-form'
+    );
+    const formContactResult = document.getElementById('form-contact-result');
+    const contactMessage = document.getElementById('contact-message');
+
+    try {
+      sendBtn.innerHTML = '<div></div>';
+      sendBtn.classList.add('spinner-btn');
+      const response = await fetch(`${BACKEND}/contacts`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.ok === false) throw 'Error';
+    } catch (err) {
+      formContactResult.textContent = 'Error enviando el mensaje';
+      contactMessage.textContent = 'Intentelo nuevamente.';
+    } finally {
+      responseContactForm.classList.add('flex');
+      responseContactForm.classList.remove('hidden');
+      contactForm.classList.add('hidden');
+      contactForm.classList.remove('flex');
+    }
+  }
+</script>

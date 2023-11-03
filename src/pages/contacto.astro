@@ -1,5 +1,152 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
+// import Subscription from '@components/Subscription/Subscription.astro';
+import ContactForm from '@components/Contact/ContactForm.astro';
+import { getOffices } from '@services/offices';
+import heroContact from '@assets/images/pizarra1.png';
+import { Icon } from 'astro-icon';
+
+const offices = await getOffices();
 ---
 
-<Layout title="Librería Alfa">Contacto</Layout>
+<Layout title="Librería Alfa | Contacto">
+  <!-- slug="contacto" -->
+  <main>
+    <section
+      class="flex flex-col gap-8 justify-center items-center sm:flex-row sm:mt-0 h-[calc(100vh_-_90px)] max-h-[800px] px-4 lg:px-24"
+    >
+      <div class="wave">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1024 600"
+        >
+          <path
+            fill="#f98b24"
+            d="M 0 600 Q 0 300 0 150 Q 250 0 350 150 Q 550 550 900 550 L 1024 550 L 1024 600 Z"
+          ></path>
+        </svg>
+      </div>
+      <div class="w-full md:w-1/2">
+        <h2 class="text-5xl font-dancing text-primary text-center">
+          Conectemos
+        </h2>
+        <p class="paragraph pt-12 text-2xl">
+          Nos encantaría ayudarte a profundizar en las posibilidades del yoga
+          auténtico y su adaptación al mundo actual.
+        </p>
+      </div>
+      <div class="w-full md:w-1/2">
+        <img
+          class="object-contain mx-auto h-full w-full"
+          src={heroContact.src}
+          alt="Background Image"
+        />
+      </div>
+    </section>
+
+    <section class="background">
+      <div
+        class="flex flex-col sm:flex-row justify-center items-center h-[1100px] sm:h-[688px] bg-[#f4ecea] py-24 px-4 lg:px-16"
+      >
+        <!-- INFO -->
+        <div class="w-full sm:w-1/2 flex flex-col h-full justify-between py-6">
+          <!-- bg-[url('/public/images/contact-info.png')] bg-no-repeat bg-origin-border bg-auto -->
+          <h3 class="text-4xl font-dancing text-primary text-center">
+            Librería Alfa
+          </h3>
+          <p class="paragraph">
+            ¡Estamos emocionados de escucharte! Si tienes alguna pregunta,
+            comentario o simplemente quieres saludar, no dudes en ponerte en
+            contacto con nosotros. Llena el formulario a continuación y te
+            responderemos lo más pronto posible.
+          </p>
+          <div class="">
+            <div class="flex gap-4 justify-start">
+              <Icon
+                name="mdi:map-marker"
+                class="w-5 h-5 text-gray-700"
+              />
+              <p>
+                {offices[0].address}, {offices[0].city}. CP: {offices[0].cp}
+              </p>
+            </div>
+
+            <div class="flex gap-4 justify-start mt-4">
+              <Icon
+                name="mdi:phone"
+                class="w-5 h-5 text-gray-700"
+              />
+              <p>{offices[0].phone}</p>
+            </div>
+
+            <div class="flex gap-4 justify-start mt-4">
+              <Icon
+                name="mdi:email"
+                class="w-5 h-5 text-gray-700"
+              />
+              <p>{offices[0].email}</p>
+            </div>
+          </div>
+        </div>
+        <!-- FORM -->
+
+        <ContactForm />
+      </div>
+      <div id="map"></div>
+    </section>
+    <!-- <Subscription /> -->
+  </main>
+
+  <style>
+    .background {
+      /* position: absolute; */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: azure;
+      background-image: radial-gradient(
+        circle at 40% 60%,
+        #67e8f9 -50%,
+        transparent 20%
+      );
+    }
+    #map {
+      height: 350px;
+      width: 100%;
+    }
+    .wave {
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      z-index: -99;
+    }
+  </style>
+
+  <script define:vars={{ offices }}>
+    window.initMap = function () {
+      console.log('offices[0]', offices[0]);
+      var coord = {
+        lat: parseFloat(offices[0].lat),
+        lng: parseFloat(offices[0].lng),
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: coord,
+      });
+      var marker = new google.maps.Marker({
+        position: coord,
+        map: map,
+      });
+    };
+  </script>
+
+  <script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeRYDNFRPnw7Hh7qs4Cog5H6CXmgwh5go&callback=initMap"
+  >
+    console.log('PASS_MAPS', PASS_MAPS);
+  </script>
+</Layout>
