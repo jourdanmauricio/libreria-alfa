@@ -19,17 +19,18 @@ const office = offices[0];
   <div
     class="max-w-[1600px] mx-auto flex items-center justify-between gap-4 pr-4 z-10 px-6 h-10"
   >
-    <div class="flex">
-      {
-        office.phone && (
-          <span class="text-sm hidden sm:block mr-4">{office.phone}</span>
-        )
-      }
-      {
+    <div class="flex items-center gap-4">
+      <Icon
+        name="mdi:truck"
+        class="w-6 h-6"
+      />
+      <span class="hidden sm:block"> Envíos a todo el país</span>
+      {office.phone && <span class="text-sm ">{office.phone}</span>}
+      <!-- {
         office.email && (
-          <span class="text-sm hidden sm:block mr-4">{office.email}</span>
+          <span class="text-sm hidden sm:block">{office.email}</span>
         )
-      }
+      } -->
     </div>
 
     <div class="flex gap-4">
@@ -340,68 +341,68 @@ const office = offices[0];
 </style>
 
 <script is:inline>
-let initialized = false;
-function initialize() {
-  const $openMenu = document.getElementById( 'open-menu' );
-  const $menuMobile = document.getElementById( 'menu-mobile' );
-  const $menu = document.getElementById( 'menu' );
-  const $backdrop = document.getElementById( 'backdrop' );
+  let initialized = false;
+  function initialize() {
+    const $openMenu = document.getElementById('open-menu');
+    const $menuMobile = document.getElementById('menu-mobile');
+    const $menu = document.getElementById('menu');
+    const $backdrop = document.getElementById('backdrop');
 
-  $openMenu.addEventListener( 'click', openCloseMenu );
+    $openMenu.addEventListener('click', openCloseMenu);
 
-  function openCloseMenu() {
-    // Alternar la visibilidad del menú móvil
-    if ( $menuMobile.classList.contains( 'left-0' ) ) {
-      // Saco
-      $menuMobile.classList.add( '-left-full' );
-      $menuMobile.classList.remove( 'left-0' );
-      $backdrop.classList.add( 'opacity-0', 'hidden' );
-      $backdrop.classList.remove( 'opacity-100', 'block' );
-    } else {
-      // Pongo
-      $menuMobile.classList.add( 'left-0' );
-      $menuMobile.classList.remove( '-left-full' );
-      $backdrop.classList.remove( 'opacity-0', 'hidden' );
-      $backdrop.classList.add( 'opacity-100', 'block' );
+    function openCloseMenu() {
+      // Alternar la visibilidad del menú móvil
+      if ($menuMobile.classList.contains('left-0')) {
+        // Saco
+        $menuMobile.classList.add('-left-full');
+        $menuMobile.classList.remove('left-0');
+        $backdrop.classList.add('opacity-0', 'hidden');
+        $backdrop.classList.remove('opacity-100', 'block');
+      } else {
+        // Pongo
+        $menuMobile.classList.add('left-0');
+        $menuMobile.classList.remove('-left-full');
+        $backdrop.classList.remove('opacity-0', 'hidden');
+        $backdrop.classList.add('opacity-100', 'block');
+      }
     }
-  }
-  // Agregar event listener al menú para cerrarlo al hacer clic en un enlace
-  $menu.addEventListener( 'click', () => {
-    $menuMobile.classList.add( '-left-full' );
-    $menuMobile.classList.remove( 'left-0' );
-  } );
+    // Agregar event listener al menú para cerrarlo al hacer clic en un enlace
+    $menu.addEventListener('click', () => {
+      $menuMobile.classList.add('-left-full');
+      $menuMobile.classList.remove('left-0');
+    });
 
-  // Agregar event listener al documento para cerrar el menú al hacer clic fuera de él
-  document.addEventListener( 'click', ( event ) => {
-    if (
-      event.target !== $openMenu &&
-      event.target !== $menu &&
-      // !$menu.contains( event.target as HTMLButtonElement )
-      !$menu.contains( event.target )
-    ) {
-      $menuMobile.classList.add( '-left-full' );
-      $menuMobile.classList.remove( 'left-0' );
-      $backdrop.classList.add( 'opacity-0', 'hidden' );
-      $backdrop.classList.remove( 'opacity-100', 'block' );
+    // Agregar event listener al documento para cerrar el menú al hacer clic fuera de él
+    document.addEventListener('click', (event) => {
+      if (
+        event.target !== $openMenu &&
+        event.target !== $menu &&
+        // !$menu.contains( event.target as HTMLButtonElement )
+        !$menu.contains(event.target)
+      ) {
+        $menuMobile.classList.add('-left-full');
+        $menuMobile.classList.remove('left-0');
+        $backdrop.classList.add('opacity-0', 'hidden');
+        $backdrop.classList.remove('opacity-100', 'block');
+      }
+    });
+
+    const $icon = document.getElementById('icon');
+    $icon.addEventListener('click', (event) => {
+      openCloseMenu();
+      event.stopPropagation();
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!initialized) {
+      initialize();
     }
-  } );
+  });
 
-  const $icon = document.getElementById( 'icon' );
-  $icon.addEventListener( 'click', ( event ) => {
-    openCloseMenu();
-    event.stopPropagation();
-  } );
-}
-
-window.addEventListener( 'DOMContentLoaded', () => {
-  if ( !initialized ) {
-    initialize();
-  }
-} );
-
-document.addEventListener( 'astro:after-swap', () => {
-  if ( !initialized ) {
-    initialize();
-  }
-} );
+  document.addEventListener('astro:after-swap', () => {
+    if (!initialized) {
+      initialize();
+    }
+  });
 </script>
