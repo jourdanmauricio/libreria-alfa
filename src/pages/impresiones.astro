@@ -3,134 +3,168 @@ import { Icon } from 'astro-icon';
 import Layout from '../layouts/Layout.astro';
 import ModalMessage from '@components/ModalMessage/ModalMessage.astro';
 import { getNetworks } from '@services/networks';
-// import { initialPrintErrors, printFields } from '@config/variables';
-// import { validations } from '@utils/validations';
-// import { createPrint } from '@services/orders';
-// const BACKEND = import.meta.env.PUBLIC_BACKEND;
 
 const data = await getNetworks();
 const whatsapp = data.whatsapp.split('=')[0];
 ---
 
 <Layout title="Librería Alfa">
-  <main class="max-w-[500px] mx-auto">
+  <main class="">
     <h1 class="text-3xl text-center py-8 fade-in-spring">Impresiones</h1>
 
-    <form
-      id="print-form"
-      class="flex flex-col mb-8 fade-in"
-      novalidate
+    <section
+      id="intro"
+      class="fade-in"
     >
-      <!-- {loading && <Spinner />} -->
+      <article class="max-w-[800px] mx-auto px-4">
+        <p>
+          Ofrecemos un servicio de impresión de documentos eficiente y
+          conveniente. Simplemente adjunte sus archivos en nuestra página web y
+          nosotros nos encargaremos del resto. Ya sea para documentos
+          importantes, presentaciones profesionales o trabajos académicos,
+          estamos listos para imprimirlos con la mejor calidad.
+        </p>
+        <p class="pt-4">
+          Nuestro proceso es rápido y sencillo. Completa el siguiente formulario
+          y una vez que sus impresiones estén listas, podrán ser retirados en
+          nuestro local. Si tienes algún requeriento particular ingrésalo en
+          observaciones.
+        </p>
+        <p class="pt-4">
+          También puedes enviarlo por whatsapp. Recuerda adjuntar los archivos
+          que desees imprimir, junto a la información de contacto.
+        </p>
 
-      <!-- Nombre y apellido -->
-      <div class="field">
-        <div class="error__field">
-          <span
-            id="error-name"
-            class="span__error2"
-          >
-          </span>
-        </div>
-        <input
-          class="input__field border py-1 px-2 w-full rounded"
-          type="text"
-          name="name"
-          id="name"
-          autocomplete="name"
-          placeholder=" "
-        />
-        <label for="name">Nombre y Apellido</label>
-      </div>
-      <!-- DNI -->
-      <div class="field">
-        <div class="error__field">
-          <span
-            id="error-dni"
-            class="span__error2"
-          >
-          </span>
-        </div>
-        <input
-          class="input__field border py-1 px-2 w-full rounded"
-          type="text"
-          name="dni"
-          id="dni"
-          placeholder=" "
-        />
-        <label for="dni">DNI</label>
-      </div>
-      <!-- Email -->
-      <div class="field">
-        <div class="error__field">
-          <span
-            id="error-email"
-            class="span__error2"
-          >
-          </span>
-        </div>
-        <input
-          class="input__field border py-1 px-2 w-full rounded"
-          type="text"
-          name="email"
-          id="email"
-          placeholder=" "
-        />
-        <label for="email">Email</label>
-      </div>
-      <!-- Phone -->
-      <div class="field">
-        <div class="error__field">
-          <span
-            id="error-phone"
-            class="span__error2"
-          >
-          </span>
-        </div>
-        <input
-          class="input__field border py-1 px-2 w-full rounded"
-          type="text"
-          name="phone"
-          id="phone"
-          placeholder=" "
-        />
-        <label for="phone">Teléfono</label>
-      </div>
-      <!-- Observation -->
-      <div class="field">
-        <div class="error__field">
-          <span
-            id="error-observation"
-            class="span__error2"
-          >
-          </span>
-        </div>
-        <textarea
-          class="input__field border py-1 px-2 w-full rounded"
-          name="observation"
-          rows={4}
-          id="observation"
-          placeholder=" "
-        ></textarea>
-        <label for="observation">Observación</label>
-      </div>
+        <!-- href={message} -->
+        <a
+          href={whatsapp}
+          id="whatsapp-message"
+          target="_blank"
+          class="w-[300px] py-2 bg-[#25D366] rounded flex justify-center items-center font-semibold text-white gap-4 mx-auto mt-8"
+        >
+          Enviar por Whatsapp{' '}
+          <Icon
+            name="mdi:whatsapp"
+            class="w-8 h-8 text-white"
+          />
+        </a>
+        <p class="pt-8">
+          Confíe en nosotros para obtener resultados de calidad, ahorre tiempo y
+          dinero. Contáctenos hoy mismo para disfrutar de nuestro servicio de
+          impresión sin complicaciones.
+        </p>
+      </article>
 
-      <!-- Files -->
-      <section
-        class="w-full h-full flex items-center justify-center py-8 fade-in"
+      <form
+        id="print-form"
+        class="max-w-[500px] mx-auto flex flex-col my-8 px-4"
+        novalidate
       >
-        <div>
-          <div
-            id="preview"
-            class="mt-2.5"
-          >
+        <!-- {loading && <Spinner />} -->
+
+        <!-- Nombre y apellido -->
+        <div class="field">
+          <div class="error__field">
+            <span
+              id="error-name"
+              class="span__error2"
+            >
+            </span>
           </div>
+          <input
+            class="input__field border py-1 px-2 w-full rounded"
+            type="text"
+            name="name"
+            id="name"
+            autocomplete="name"
+            placeholder=" "
+          />
+          <label for="name">Nombre y Apellido</label>
+        </div>
+        <!-- DNI -->
+        <div class="field">
+          <div class="error__field">
+            <span
+              id="error-dni"
+              class="span__error2"
+            >
+            </span>
+          </div>
+          <input
+            class="input__field border py-1 px-2 w-full rounded"
+            type="text"
+            name="dni"
+            id="dni"
+            placeholder=" "
+          />
+          <label for="dni">DNI</label>
+        </div>
+        <!-- Email -->
+        <div class="field">
+          <div class="error__field">
+            <span
+              id="error-email"
+              class="span__error2"
+            >
+            </span>
+          </div>
+          <input
+            class="input__field border py-1 px-2 w-full rounded"
+            type="text"
+            name="email"
+            id="email"
+            placeholder=" "
+          />
+          <label for="email">Email</label>
+        </div>
+        <!-- Phone -->
+        <div class="field">
+          <div class="error__field">
+            <span
+              id="error-phone"
+              class="span__error2"
+            >
+            </span>
+          </div>
+          <input
+            class="input__field border py-1 px-2 w-full rounded"
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder=" "
+          />
+          <label for="phone">Teléfono</label>
+        </div>
+        <!-- Observation -->
+        <div class="field">
+          <div class="error__field">
+            <span
+              id="error-observation"
+              class="span__error2"
+            >
+            </span>
+          </div>
+          <textarea
+            class="input__field border py-1 px-2 w-full rounded"
+            name="observation"
+            rows={4}
+            id="observation"
+            placeholder=" "
+          ></textarea>
+          <label for="observation">Observación</label>
+        </div>
+
+        <!-- Files -->
+
+        <section
+          class="w-full h-full flex items-center justify-center py-8 fade-in"
+        >
           <div
             id="drop-area"
-            class="flex items-center justify-center flex-col border-2 border-dashed border-slate-700 h-[300px] w-[500px] rounded"
+            class="flex items-center justify-center flex-col border-2 border-dashed border-slate-700 h-[200px] rounded w-full"
           >
-            <h2 class="text-2xl text-slate-950 font-semibold">
-              Arrastra los archvios aquí
+            <h2 class="text-xl sm:text-2xl text-slate-950 font-semibold">
+              Arrastra los archivos aquí
             </h2>
             <span class="text-xl text-slate-950 font-semibold">o</span>
             <button
@@ -146,16 +180,17 @@ const whatsapp = data.whatsapp.split('=')[0];
               multiple
             />
           </div>
-        </div>
-      </section>
+        </section>
+        <div id="preview"></div>
 
-      <div class="mt-8 flex justify-between">
-        <button class="py-2 px-4 border rounded"> Cancelar</button>
-        <button class="py-2 px-4 border rounded bg-[#f98b24]">
-          Enviar Pedido
-        </button>
-      </div>
-    </form>
+        <div class="mt-8 flex justify-between">
+          <button class="py-2 px-4 border rounded"> Cancelar</button>
+          <button class="py-2 px-4 border rounded bg-[#f98b24]">
+            Enviar Pedido
+          </button>
+        </div>
+      </form>
+    </section>
 
     <section
       id="section-finish"
@@ -163,9 +198,11 @@ const whatsapp = data.whatsapp.split('=')[0];
     >
       <h2 class="text-xl">Pedido registrado con exitosamente</h2>
 
-      <p class="py-8">También puedes enviarlo por whatsapp.</p>
+      <p class="py-8">
+        También puedes enviarlo por whatsapp. Recuerda adjuntar los archivos que
+        desees imprimir.
+      </p>
 
-      <!-- href={message} -->
       <a
         data-whatsapp={whatsapp}
         id="whatsapp-message"
@@ -198,7 +235,8 @@ const whatsapp = data.whatsapp.split('=')[0];
     align-items: center;
     gap: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #f98b24;
+    border-radius: 4px;
   }
   .active {
     background-color: #b8d4fd;
@@ -220,27 +258,16 @@ const whatsapp = data.whatsapp.split('=')[0];
     bottom: 0;
     transition: transform 0.5s;
   }
-  /* Establece una clase para mostrar el div */
   .show-message {
     transform: translateY(0);
   }
 
-  /* Establece una clase para ocultar el div */
   .hidde-message {
     transform: translateY(100%);
   }
 </style>
 
 <script>
-  // {{
-  //   whatsapp,
-  // initialPrintErrors,
-  // printFields,
-  // validations,
-  // createPrint,
-  // BACKEND,
-  //}}
-  // type="module"
   import { initialPrintErrors, printFields } from '@config/variables';
   import { validations } from '@utils/validations';
   import { createPrint } from '@services/orders';
@@ -249,6 +276,7 @@ const whatsapp = data.whatsapp.split('=')[0];
   const $message = document.getElementById('message');
   const $whatsappMessage = document.getElementById('whatsapp-message');
   const $form = document.getElementById('print-form');
+  const $intro = document.getElementById('intro');
 
   function showMessage() {
     $message.classList.remove('hidde-message');
@@ -334,6 +362,7 @@ const whatsapp = data.whatsapp.split('=')[0];
         behavior: 'smooth',
       });
       $form.classList.add('hidden');
+      $intro.classList.add('hidden');
       $sectionFinish.classList.remove('hidden');
       return newOrder;
     } catch (err) {
