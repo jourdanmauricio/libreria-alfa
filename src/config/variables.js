@@ -69,3 +69,49 @@ export const checkoutFields = {
     errordesc: 'Solo letras y números',
   },
 };
+
+export const printFields = {
+  name: {
+    validate: true,
+    required: true,
+    pattern: '^[A-Za-z1-9ÑñÁáÉéÍíÓóÚú ]{0,255}$',
+    errordesc: 'Solo letras y números',
+  },
+  dni: {
+    validate: true,
+    required: true,
+    pattern: '[0-9]$',
+    errordesc: 'Solo números',
+  },
+  email: {
+    validate: true,
+    required: true,
+    pattern:
+      "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$",
+    errordesc: 'Email inválido',
+  },
+  phone: {
+    validate: true,
+    required: true,
+    pattern: '^[0-9 ()]{7,15}$',
+    errordesc: 'Teléfono inválido',
+  },
+  comment: {
+    validate: false,
+  },
+};
+
+export const initialPrintErrors = {
+  name: null,
+  email: null,
+  phone: null,
+  dni: null,
+  observation: null,
+};
+export const initialPrintForm = {
+  name: '',
+  email: '',
+  phone: '',
+  dni: '',
+  observation: '',
+};

@@ -32,7 +32,7 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
       <form
         id="order-form"
         onSubmit={onSubmit}
-        className="flex flex-col mb-8 "
+        className="flex flex-col mb-8"
         noValidate
       >
         {loading && <Spinner />}

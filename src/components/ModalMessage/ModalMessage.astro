@@ -1,0 +1,31 @@
+---
+import { Icon } from 'astro-icon';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="h-[80px] bg-red-400 flex justify-center items-center">
+  <button
+    id="close-message"
+    class="absolute top-2 right-2 hover:bg-red-500/50 rounded-full p-1"
+  >
+    <Icon
+      name="mdi:close"
+      class="w-6 h-6 text-slate-950"
+    />
+  </button>
+
+  <p class="text-slate-950 text-xl font-semibold">{text}</p>
+</div>
+
+<script>
+  const $closeMessage = document.getElementById('close-message');
+  $closeMessage.addEventListener('click', () => {
+    const event = new CustomEvent('close-message');
+    document.dispatchEvent(event);
+  });
+</script>

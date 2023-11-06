@@ -18,3 +18,21 @@ export const createOrder = async (data) => {
     console.log('ERROR DE CONEXION. Contacte al administrador!!!!', error);
   }
 };
+
+export const createPrint = async (data) => {
+  try {
+    const res = await fetch(`${BACKEND}/orders/prints`, {
+      method: 'POST',
+      body: data,
+      headers: { url: URL },
+    });
+    if (res.status !== 201) {
+      console.log('Error creando el pedido', res.status, res.statusText);
+      throw 'Error creando el pedido';
+    }
+    const order = await res.json();
+    return order;
+  } catch (error) {
+    console.log('ERROR DE CONEXION. Contacte al administrador!!!!', error);
+  }
+};

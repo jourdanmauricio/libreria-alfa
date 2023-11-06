@@ -1,7 +1,433 @@
 ---
-import '../styles/glide.core.min.css';
-import '../styles/glide.css';
+import { Icon } from 'astro-icon';
 import Layout from '../layouts/Layout.astro';
+import ModalMessage from '@components/ModalMessage/ModalMessage.astro';
+import { getNetworks } from '@services/networks';
+// import { initialPrintErrors, printFields } from '@config/variables';
+// import { validations } from '@utils/validations';
+// import { createPrint } from '@services/orders';
+// const BACKEND = import.meta.env.PUBLIC_BACKEND;
+
+const data = await getNetworks();
+const whatsapp = data.whatsapp.split('=')[0];
 ---
 
-<Layout title="Librería Alfa">Impresiones</Layout>
+<Layout title="Librería Alfa">
+  <main class="max-w-[500px] mx-auto">
+    <h1 class="text-3xl text-center py-8 fade-in-spring">Impresiones</h1>
+
+    <form
+      id="print-form"
+      class="flex flex-col mb-8 fade-in"
+      novalidate
+    >
+      <!-- {loading && <Spinner />} -->
+
+      <!-- Nombre y apellido -->
+      <div class="field">
+        <div class="error__field">
+          <span
+            id="error-name"
+            class="span__error2"
+          >
+          </span>
+        </div>
+        <input
+          class="input__field border py-1 px-2 w-full rounded"
+          type="text"
+          name="name"
+          id="name"
+          autocomplete="name"
+          placeholder=" "
+        />
+        <label for="name">Nombre y Apellido</label>
+      </div>
+      <!-- DNI -->
+      <div class="field">
+        <div class="error__field">
+          <span
+            id="error-dni"
+            class="span__error2"
+          >
+          </span>
+        </div>
+        <input
+          class="input__field border py-1 px-2 w-full rounded"
+          type="text"
+          name="dni"
+          id="dni"
+          placeholder=" "
+        />
+        <label for="dni">DNI</label>
+      </div>
+      <!-- Email -->
+      <div class="field">
+        <div class="error__field">
+          <span
+            id="error-email"
+            class="span__error2"
+          >
+          </span>
+        </div>
+        <input
+          class="input__field border py-1 px-2 w-full rounded"
+          type="text"
+          name="email"
+          id="email"
+          placeholder=" "
+        />
+        <label for="email">Email</label>
+      </div>
+      <!-- Phone -->
+      <div class="field">
+        <div class="error__field">
+          <span
+            id="error-phone"
+            class="span__error2"
+          >
+          </span>
+        </div>
+        <input
+          class="input__field border py-1 px-2 w-full rounded"
+          type="text"
+          name="phone"
+          id="phone"
+          placeholder=" "
+        />
+        <label for="phone">Teléfono</label>
+      </div>
+      <!-- Observation -->
+      <div class="field">
+        <div class="error__field">
+          <span
+            id="error-observation"
+            class="span__error2"
+          >
+          </span>
+        </div>
+        <textarea
+          class="input__field border py-1 px-2 w-full rounded"
+          name="observation"
+          rows={4}
+          id="observation"
+          placeholder=" "
+        ></textarea>
+        <label for="observation">Observación</label>
+      </div>
+
+      <!-- Files -->
+      <section
+        class="w-full h-full flex items-center justify-center py-8 fade-in"
+      >
+        <div>
+          <div
+            id="preview"
+            class="mt-2.5"
+          >
+          </div>
+          <div
+            id="drop-area"
+            class="flex items-center justify-center flex-col border-2 border-dashed border-slate-700 h-[300px] w-[500px] rounded"
+          >
+            <h2 class="text-2xl text-slate-950 font-semibold">
+              Arrastra los archvios aquí
+            </h2>
+            <span class="text-xl text-slate-950 font-semibold">o</span>
+            <button
+              type="button"
+              class="m-5 py-2.5 px-6 text-xl border-0 outline-none bg-[#f98b24] text-slate-50 rounded"
+              >Seleccionalos</button
+            >
+            <input
+              type="file"
+              name="input-file"
+              id="input-file"
+              hidden
+              multiple
+            />
+          </div>
+        </div>
+      </section>
+
+      <div class="mt-8 flex justify-between">
+        <button class="py-2 px-4 border rounded"> Cancelar</button>
+        <button class="py-2 px-4 border rounded bg-[#f98b24]">
+          Enviar Pedido
+        </button>
+      </div>
+    </form>
+
+    <section
+      id="section-finish"
+      class="hidden fade-in"
+    >
+      <h2 class="text-xl">Pedido registrado con exitosamente</h2>
+
+      <p class="py-8">También puedes enviarlo por whatsapp.</p>
+
+      <!-- href={message} -->
+      <a
+        data-whatsapp={whatsapp}
+        id="whatsapp-message"
+        target="_blank"
+        class="w-full py-2 bg-[#25D366] rounded flex justify-center items-center font-semibold text-white gap-4"
+      >
+        Enviar por Whatsapp{' '}
+        <Icon
+          name="mdi:whatsapp"
+          class="w-8 h-8 text-white"
+        />
+      </a>
+
+      <p class="py-8 font-semibold text-xl">
+        Muchas gracias, en breve nos pondremos en contacto
+      </p>
+    </section>
+  </main>
+  <div
+    id="message"
+    class="hidde-message message w-full"
+  >
+    <ModalMessage text="Archivo no permitido" />
+  </div>
+</Layout>
+
+<style is:inline>
+  .file__container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  .active {
+    background-color: #b8d4fd;
+    color: black;
+    border: 1px dashed #618ac9;
+  }
+  .status-text {
+    padding: 0 10px;
+  }
+  .success {
+    color: #52ad5a;
+  }
+  .failure {
+    color: #ff0000;
+  }
+  .message {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transition: transform 0.5s;
+  }
+  /* Establece una clase para mostrar el div */
+  .show-message {
+    transform: translateY(0);
+  }
+
+  /* Establece una clase para ocultar el div */
+  .hidde-message {
+    transform: translateY(100%);
+  }
+</style>
+
+<script>
+  // {{
+  //   whatsapp,
+  // initialPrintErrors,
+  // printFields,
+  // validations,
+  // createPrint,
+  // BACKEND,
+  //}}
+  // type="module"
+  import { initialPrintErrors, printFields } from '@config/variables';
+  import { validations } from '@utils/validations';
+  import { createPrint } from '@services/orders';
+
+  const $sectionFinish = document.getElementById('section-finish');
+  const $message = document.getElementById('message');
+  const $whatsappMessage = document.getElementById('whatsapp-message');
+  const $form = document.getElementById('print-form');
+
+  function showMessage() {
+    $message.classList.remove('hidde-message');
+    $message.classList.add('show-message');
+    setTimeout(() => {
+      $message.classList.remove('show-message');
+      $message.classList.add('hidde-message');
+    }, 1500);
+  }
+
+  let errors = initialPrintErrors;
+  let filesToSend = [];
+
+  function handleError(name, value, type = 'input') {
+    // const { name, value } = e.target;
+    if (!printFields[name]) return;
+    let error = false;
+    const allErrors = validations(printFields, name, value, errors);
+    console.log('allErrors', allErrors);
+    for (const errorField in allErrors) {
+      const $spanError = document.getElementById(`error-${errorField}`);
+      const $inputError = document.getElementById(errorField);
+
+      if (allErrors[errorField] === null) {
+        if (type !== 'form') {
+          $spanError.textContent = '';
+          $spanError.classList.remove('error__msg2');
+          $inputError.classList.remove('has__error');
+        }
+      } else {
+        error = true;
+        $spanError.textContent = allErrors[errorField];
+        $spanError.classList.add('error__msg2');
+        $inputError.classList.add('has__error');
+      }
+    }
+    return error;
+  }
+
+  function addListeners() {
+    $form.addEventListener('change', (e) => {
+      const { name, value } = e.target as HTMLInputElement;
+      handleError(name, value);
+    });
+    $form.addEventListener('submit', (e) => submit(e));
+
+    document.addEventListener('close-message', (event) => {
+      $message.classList.remove('show-message');
+      $message.classList.add('hidde-message');
+    });
+  }
+
+  async function submit(e) {
+    e.preventDefault();
+    const form = document.getElementById(e.target.id);
+    const data = new FormData(form as HTMLFormElement);
+    const info = Object.fromEntries(data.entries());
+
+    // Validate form
+    let formError = false;
+    for (let name in info) {
+      if (!printFields[name]) continue;
+      const errorField = handleError(name, info[name], 'form');
+      if (errorField) formError = true;
+    }
+    if (formError) return;
+
+    // Send files
+    try {
+      const newOrder = await createPrint(data);
+      console.log('newOrder', newOrder);
+      let phone = $whatsappMessage.dataset.whatsapp;
+
+      const buyer = `PEDIDO DE IMPRESION NRO ${newOrder.id}\n* Nombre: ${newOrder.buyer[0].name}\n* Email: ${newOrder.buyer[0].email}\n* DNI: ${newOrder.buyer[0].dni}\n* Teléfono: ${newOrder.buyer[0].name}\n`;
+
+      let whatsapp = `${phone}=${encodeURIComponent(
+        `${buyer}\n${newOrder.observation}`
+      )}`;
+
+      $whatsappMessage.setAttribute('href', whatsapp);
+      window.scroll({
+        top: 0,
+        behavior: 'smooth',
+      });
+      $form.classList.add('hidden');
+      $sectionFinish.classList.remove('hidden');
+      return newOrder;
+    } catch (err) {
+      console.log('ERRRORRRR', err);
+    }
+  }
+
+  addListeners();
+
+  //////////////////
+  // UPLOAD FILES //
+  //////////////////
+  const dropArea = document.getElementById('drop-area');
+  const dragText = dropArea.querySelector('h2');
+  const button = dropArea.querySelector('button');
+  const input = dropArea.querySelector('#input-file') as HTMLInputElement;
+  let files;
+
+  button.addEventListener('click', (e) => {
+    console.log('click');
+    input.click();
+  });
+  dropArea.addEventListener('dragover', (e) => {
+    console.log('OVER');
+    e.preventDefault();
+    dropArea.classList.add('active');
+    dragText.textContent = 'Suelta para subir los achivos';
+  });
+  dropArea.addEventListener('dragleave', (e) => {
+    // console.log('LEAVE');
+    e.preventDefault();
+    dropArea.classList.remove('active');
+    dragText.textContent = 'Arrastra los archvios aquí';
+  });
+  dropArea.addEventListener('drop', (e) => {
+    // console.log('DROP');
+    e.preventDefault();
+    files = e.dataTransfer.files;
+    showFiles(files);
+    dropArea.classList.remove('active');
+    dragText.textContent = 'Arrastra los archvios aquí';
+  });
+  input.addEventListener('change', (e) => {
+    files = input.files;
+    dropArea.classList.add('active');
+    showFiles(files);
+    dropArea.classList.remove('active');
+  });
+  function showFiles(files) {
+    if (files.length === undefined) {
+      processFile(files);
+    } else {
+      for (const file of files) {
+        processFile(file);
+      }
+    }
+  }
+  function processFile(file) {
+    const docType = file.type;
+    console.log('docType', docType);
+    const validExtension = [
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.oasis.opendocument.text',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.oasis.opendocument.spreadsheet',
+      'application/vnd.ms-excel',
+      'application/pdf',
+    ];
+    if (validExtension.includes(docType)) {
+      const fileReader = new FileReader();
+      const id = `file-${Math.random().toString(32).substring(7)}`;
+      fileReader.addEventListener('load', (e) => {
+        const fileUrl = fileReader.result;
+        const image = `
+          <div id="${id}" class="file__container">
+            <div class="status">
+              <span>${file.name}</span>
+            </div>
+          </div>
+        `;
+        const html = document.querySelector('#preview').innerHTML;
+        document.querySelector('#preview').innerHTML = image + html;
+      });
+
+      fileReader.readAsDataURL(file);
+      filesToSend.push({ file, id });
+    } else {
+      showMessage();
+    }
+  }
+</script>
