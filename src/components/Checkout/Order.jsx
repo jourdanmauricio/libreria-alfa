@@ -26,7 +26,7 @@ const Order = ({ handleStep }) => {
         </div>
         <button
           onClick={() => handleStep(2)}
-          className="py-2 px-4 border rounded w-full bg-[#f98b24] mt-8"
+          className="py-2 px-4 border rounded w-full bg-primary mt-8"
         >
           Confirmar productos
         </button>

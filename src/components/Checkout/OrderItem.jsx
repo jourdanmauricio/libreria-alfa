@@ -45,7 +45,7 @@ const OrderItem = ({ item, index }) => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => subtractCartItem(item.id)}
-                className="border border-gray-700 hover:bg-[#f98b24] px-2 rounded"
+                className="border border-gray-700 hover:bg-primary px-2 rounded"
               >
                 <Icon
                   icon="mdi:minus"
@@ -55,7 +55,7 @@ const OrderItem = ({ item, index }) => {
               <span className="text-xs">{getQuantity(item.id)} unidades</span>
               <button
                 onClick={() => addCartItem(item)}
-                className="border border-gray-700 hover:bg-[#f98b24] px-2 rounded"
+                className="border border-gray-700 hover:bg-primary px-2 rounded"
               >
                 <Icon
                   icon="mdi:plus"

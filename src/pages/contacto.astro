@@ -1,10 +1,10 @@
 ---
+import Icon from 'astro-icon';
 import Layout from '@layouts/Layout.astro';
-// import Subscription from '@components/Subscription/Subscription.astro';
 import ContactForm from '@components/Contact/ContactForm.astro';
 import { getOffices } from '@services/offices';
 import heroContact from '@assets/images/pizarra1.png';
-import { Icon } from 'astro-icon';
+// import { Icon } from 'astro-icon';
 import Subscription from '@components/Subscription/Subscription.astro';
 
 const offices = await getOffices();
@@ -28,10 +28,8 @@ const offices = await getOffices();
         </svg>
       </div>
       <div class="w-full md:w-1/2">
-        <h2 class="text-5xl font-dancing text-primary text-center">
-          Conectemos
-        </h2>
-        <p class="paragraph pt-12 text-2xl">
+        <h1 class="text-5xl font-dancing text-center">Conectemos</h1>
+        <p class="leading-8 font-normal text-slate-900 pt-12 text-2xl">
           Te ofrecemos todo lo que necesitas para dar vida a tus proyectos.
           Papel de calidad, colores vibrantes e insumos creativos que te
           acompañarán en cada paso.
@@ -51,12 +49,21 @@ const offices = await getOffices();
         class="flex flex-col sm:flex-row justify-center items-center h-[1100px] sm:h-[688px] bg-[#f4ecea] py-24 px-4 lg:px-16"
       >
         <!-- INFO -->
-        <div class="w-full sm:w-1/2 flex flex-col h-full justify-between py-6">
-          <!-- bg-[url('/public/images/contact-info.png')] bg-no-repeat bg-origin-border bg-auto -->
-          <h3 class="text-4xl font-dancing text-primary text-center">
-            Librería Alfa
-          </h3>
-          <p class="paragraph">
+        <article
+          class="w-full sm:w-1/2 flex flex-col h-full justify-between py-6"
+        >
+          <header class="flex justify-center gap-4">
+            <Icon
+              width={40}
+              height={40}
+              name="logo"
+              alt="logo"
+            />
+            <h2 class="text-4xl font-dancing text-slate-900 text-center">
+              Librería Alfa
+            </h2>
+          </header>
+          <p class="leading-8 font-normal text-base">
             ¡Estamos emocionados de escucharte! Si tienes alguna pregunta,
             comentario o simplemente quieres saludar, no dudes en ponerte en
             contacto con nosotros. Llena el formulario a continuación y te
@@ -66,7 +73,7 @@ const offices = await getOffices();
             <div class="flex gap-4 justify-start">
               <Icon
                 name="mdi:map-marker"
-                class="w-5 h-5 text-gray-700"
+                class="w-5 h-5 text-secondary"
               />
               <p>
                 {offices[0].address}, {offices[0].city}. CP: {offices[0].cp}
@@ -76,7 +83,7 @@ const offices = await getOffices();
             <div class="flex gap-4 justify-start mt-4">
               <Icon
                 name="mdi:phone"
-                class="w-5 h-5 text-gray-700"
+                class="w-5 h-5 text-secondary"
               />
               <p>{offices[0].phone}</p>
             </div>
@@ -84,12 +91,12 @@ const offices = await getOffices();
             <div class="flex gap-4 justify-start mt-4">
               <Icon
                 name="mdi:email"
-                class="w-5 h-5 text-gray-700"
+                class="w-5 h-5 text-secondary"
               />
               <p>{offices[0].email}</p>
             </div>
           </div>
-        </div>
+        </article>
         <!-- FORM -->
 
         <ContactForm />

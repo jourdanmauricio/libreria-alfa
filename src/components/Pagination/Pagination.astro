@@ -7,20 +7,20 @@ const { length, firstPage, lastPage, currentPage, prev, next } = Astro.props;
     class={`border p-2 text-slate-950 rounded ${
       currentPage === parseInt(firstPage)
         ? 'bg-slate-200 pointer-events-none cursor-default'
-        : 'bg-[#f98b24]'
+        : 'bg-primary'
     }`}
     href={prev}
     >Anterior</a
   >
   <!-- href=`/libreria-alfa/productos/${currentPage - 1}` -->
-  <div class="border border-[#f98b24] px-4 py-2 text-slate-800">
+  <div class="border border-primary px-4 py-2 text-slate-800">
     {currentPage}
   </div>
   <a
     class={`border p-2 text-slate-950 rounded ${
       currentPage === parseInt(lastPage)
         ? 'bg-slate-200 pointer-events-none cursor-default'
-        : 'bg-[#f98b24]'
+        : 'bg-primary'
     }`}
     href={next}
     >Siguiente</a

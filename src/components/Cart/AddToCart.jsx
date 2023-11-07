@@ -31,7 +31,7 @@ const AddToCart = ({ prod }) => {
         <div className="flex justify-center border border-gray-700 rounded w-fit mx-auto">
           <button
             onClick={() => subtractCartItem(prod.id)}
-            className="border-r border-gray-700 hover:bg-[#f98b24] px-2"
+            className="border-r border-gray-700 hover:bg-primary px-2"
           >
             <Icon
               icon="mdi:minus"
@@ -44,14 +44,14 @@ const AddToCart = ({ prod }) => {
               icon="mdi:cart"
               className="w-6 h-6 text-slate-700"
             />
-            <div className="bg-[#f98b24] rounded-full absolute top-0 right-1 text-slate-950 pointer-events-none flex justify-center items-center p-1 w-5 h-5">
+            <div className="bg-primary rounded-full absolute top-0 right-1 text-slate-950 pointer-events-none flex justify-center items-center p-1 w-5 h-5">
               <span className="text-xs">{getQuantity(prod.id)}</span>
             </div>
           </div>
 
           <button
             onClick={handleAddToCart}
-            className="border-l border-gray-700 hover:bg-[#f98b24] px-2"
+            className="border-l border-gray-700 hover:bg-primary px-2"
           >
             <Icon
               icon="mdi:plus"
@@ -62,7 +62,7 @@ const AddToCart = ({ prod }) => {
       ) : (
         <button
           onClick={handleAddToCart}
-          className="p-2.5 border border-gray-700 rounded hover:bg-[#f98b24]"
+          className="p-2.5 border border-gray-700 rounded hover:bg-primary"
         >
           Agregar al carrito
         </button>

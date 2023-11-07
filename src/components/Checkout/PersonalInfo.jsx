@@ -263,7 +263,7 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
           >
             Cancelar
           </button>
-          <button className="py-2 px-4 border rounded bg-[#f98b24]">
+          <button className="py-2 px-4 border rounded bg-primary">
             Enviar Pedido
           </button>
         </div>

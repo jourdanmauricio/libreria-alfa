@@ -31,12 +31,12 @@ const FavoriteBtn = ({ id, image, name, altImage, price }) => {
       {isFavorite(id) ? (
         <Icon
           icon="mdi:heart"
-          className="w-8 h-8 text-[#f98b24]"
+          className="w-8 h-8 text-primary"
         />
       ) : (
         <Icon
           icon="mdi:heart-outline"
-          className="w-8 h-8 text-[#f98b24]"
+          className="w-8 h-8 text-primary"
         />
       )}
     </button>

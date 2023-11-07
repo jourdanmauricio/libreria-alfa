@@ -6,7 +6,7 @@ const WithoutProducst = () => {
         pedido.
       </p>
       <a
-        className="py-2 px-4 border rounded bg-[#f98b24] block w-full text-center"
+        className="py-2 px-4 border rounded bg-primary block w-full text-center"
         href="/libreria-alfa/productos/1/"
       >
         Ver productos

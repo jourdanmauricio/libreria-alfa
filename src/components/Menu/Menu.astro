@@ -1,10 +1,9 @@
 ---
+import Icon from 'astro-icon';
 import FavoriteMenu from '@components/Favorite/FavoriteMenu';
 import CartMenu from '@components/Cart/CartMenu';
 import { getNetworks } from '@services/networks';
 import { getOffices } from '@services/offices';
-
-import Icon from 'astro-icon';
 
 const networks = await getNetworks();
 const offices = await getOffices();
@@ -144,9 +143,9 @@ const office = offices[0];
       <ul class="list-none p-0 m-0 flex items-center h-[50px] ml-3">
         <li class="ml-4">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] no-underline font-semibold ${
+            class={`block px-2 py-1 hover:text-primary no-underline font-semibold ${
               Astro.url.pathname === '/libreria-alfa/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/"
@@ -157,9 +156,9 @@ const office = offices[0];
         </li>
         <li class="ml-4">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname.includes('/libreria-alfa/productos/')
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/productos/1/"
@@ -170,9 +169,9 @@ const office = offices[0];
         </li>
         <li class="ml-4">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/impresiones/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/impresiones/"
@@ -183,9 +182,9 @@ const office = offices[0];
         </li>
         <li class="ml-4">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/checkout/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/checkout/"
@@ -196,9 +195,9 @@ const office = offices[0];
         </li>
         <li class="ml-4">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/contacto/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/contacto/"
@@ -243,9 +242,9 @@ const office = offices[0];
       >
         <li class="ml-4 p-6 mt-4">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline  ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline  ${
               Astro.url.pathname === '/libreria-alfa/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/"
@@ -255,9 +254,9 @@ const office = offices[0];
         </li>
         <li class="ml-4 p-6">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname.includes('/libreria-alfa/productos/')
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/productos/1/"
@@ -267,9 +266,9 @@ const office = offices[0];
         </li>
         <li class="ml-4 p-6">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/impresiones/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/impresiones/"
@@ -279,9 +278,9 @@ const office = offices[0];
         </li>
         <li class="ml-4 p-6">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/checkout/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/checkout/"
@@ -291,9 +290,9 @@ const office = offices[0];
         </li>
         <li class="ml-4 p-6">
           <a
-            class={`block px-2 py-1 hover:text-[#f98b24] font-semibold no-underline ${
+            class={`block px-2 py-1 hover:text-primary font-semibold no-underline ${
               Astro.url.pathname === '/libreria-alfa/contacto/'
-                ? 'text-[#f98b24]'
+                ? 'text-primary'
                 : 'text-slate-950'
             }`}
             href="/libreria-alfa/contacto/"

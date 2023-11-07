@@ -35,7 +35,7 @@ const URL = import.meta.env.URL;
     <!-- NAME -->
     <div>
       <label
-        for="name"
+        for="subs-name"
         class="block text-sm font-medium text-gray-900"
         >Nombre</label
       >
@@ -45,14 +45,14 @@ const URL = import.meta.env.URL;
         >
           <Icon
             name="mdi:account"
-            class="w-5 h-5 text-gray-500"
+            class="w-5 h-5 text-secondary"
           />
         </div>
         <input
           type="text"
-          id="name"
+          id="subs-name"
           name="name"
-          class="border text-sm rounded-lg block w-full pl-10 p-2.5 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
+          class="border text-sm rounded-lg block w-full pl-10 p-2 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
           data-pattern="^[A-Za-z ñáéíóúÑÁÉÍÓÚ]{0,150}$"
           data-error="El nombre no es válido"
           placeholder="Nombre"
@@ -67,7 +67,7 @@ const URL = import.meta.env.URL;
     <!-- EMAIL -->
     <div>
       <label
-        for="email"
+        for="subs-email"
         class="block text-sm font-medium text-gray-900"
         >Email</label
       >
@@ -77,12 +77,12 @@ const URL = import.meta.env.URL;
         >
           <Icon
             name="mdi:email"
-            class="w-5 h-5 text-gray-500"
+            class="w-5 h-5 text-secondary"
           />
         </div>
         <input
           type="text"
-          id="email"
+          id="subs-email"
           name="email"
           class="border text-sm rounded-lg block w-full pl-10 p-2.5 bg-gray-200 border-gray-600 placeholder-gray-500 text-slate-900 focus:ring-blue-500 focus:border-blue-500"
           data-pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
@@ -103,6 +103,7 @@ const URL = import.meta.env.URL;
         class="text-sm"
       >
         <input
+          class="w-4 h-4 accent-secondary bg-gray-100 border-gray-300 rounded focus:ring-primary"
           type="checkbox"
           name="accept"
           id="accept"
@@ -115,8 +116,7 @@ const URL = import.meta.env.URL;
          He leído y acepto la política de privacidad
       </label>
     </div>
-    <button
-      class="mt-6 p-2 px-4 mb-4 h-10 bg-[#f98b24] text-white rounded w-full flex items-center justify-center"
+    <button class="mt-6 p-2 px-4 mb-4 h-10 w-full btn-primary"
       ><span id="subscribe-btn">Suscribete</span></button
     >
   </form>
@@ -126,7 +126,8 @@ const URL = import.meta.env.URL;
   .subscription {
     height: 100%;
     width: 100%;
-    background: url(/libreria-alfa/images/subscriber.webp) no-repeat bottom right;
+    background: url(/libreria-alfa/images/subscriber.webp) no-repeat bottom
+      right;
     background-size: contain;
   }
   .spinner-btn {

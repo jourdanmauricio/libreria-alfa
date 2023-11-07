@@ -40,7 +40,10 @@ const { title } = Astro.props;
     <Footer />
     <style is:global>
       :root {
-        --accent: 136, 58, 234;
+        --primary-color: #f98b24;
+        --hover-primary-color: #d8721c;
+        --secondary-color: #3e6b86;
+        /* --accent: 136, 58, 234;
         --accent-light: 224, 204, 250;
         --accent-dark: 49, 10, 101;
         --accent-gradient: linear-gradient(
@@ -48,25 +51,26 @@ const { title } = Astro.props;
           rgb(var(--accent)),
           rgb(var(--accent-light)) 30%,
           white 60%
-        );
+        ); */
       }
 
       html {
         font-family: system-ui, sans-serif;
       }
 
+      /* ********** */
+      /* FORMULARIO */
+      /* ********** */
       .field {
         position: relative;
         display: flex;
         flex-flow: column-reverse;
         margin-bottom: 0.5rem;
       }
-
       .field label,
       .input__field {
         transition: all 0.3s;
       }
-
       .field label {
         width: fit-content;
         font-size: 14px;
@@ -74,7 +78,6 @@ const { title } = Astro.props;
         padding: 0 2px;
         background-color: transparent;
       }
-
       .input__field:placeholder-shown + label {
         cursor: text;
         white-space: nowrap;
@@ -82,17 +85,14 @@ const { title } = Astro.props;
         text-overflow: ellipsis;
         transform: translate(0.8rem, calc(0.5rem + 1.3rem));
       }
-
       ::-webkit-input-placeholder {
         opacity: 0;
         transition: inherit;
       }
-
       .input__field:focus::-webkit-input-placeholder {
         opacity: 0.3;
         color: #fff;
       }
-
       .input__field:not(:placeholder-shown) + label,
       .input__field:focus + label {
         transform: translate(0.4rem, 0rem);
@@ -113,7 +113,6 @@ const { title } = Astro.props;
         transition-duration: 1000ms;
         opacity: 1;
       }
-
       .span__error2 {
         text-align: left;
         width: 91.666667%;
@@ -126,20 +125,16 @@ const { title } = Astro.props;
         transition-duration: 1000ms;
         opacity: 0;
       }
-
       .error__msg {
         opacity: 0;
       }
-
       .error__msg2 {
         opacity: 1;
       }
-
       .error__field {
         position: relative;
         height: 1rem;
       }
-
       @keyframes animate-fade-in-spring {
         0% {
           opacity: 0;
@@ -154,11 +149,9 @@ const { title } = Astro.props;
           scale: 1;
         }
       }
-
       .fade-in-spring {
         animation: animate-fade-in-spring 0.6s ease-in-out both;
       }
-
       @keyframes animate-fade-in {
         0% {
           opacity: 0;
@@ -168,9 +161,14 @@ const { title } = Astro.props;
           opacity: 1;
         }
       }
-
       .fade-in {
         animation: animate-fade-in 0.8s ease-in-out both;
+      }
+
+      .btn-primary {
+        @apply text-white font-semibold bg-primary rounded shadow-md flex items-center justify-center hover:bg-hoverPrimaryColor uppercase;
+
+        /* hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75; */
       }
     </style>
   </body>

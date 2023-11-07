@@ -16,9 +16,7 @@ const { cats } = Astro.props;
       <div class="py-2">
         <a
           class={`${
-            cat === Astro.params.categoryWeb
-              ? 'text-[#f98b24]'
-              : 'text-slate-950'
+            cat === Astro.params.categoryWeb ? 'text-primary' : 'text-slate-950'
           }`}
           href={`/libreria-alfa/productos/${cat}/1/`}
         >
