@@ -125,6 +125,7 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
         </div>
         <div className="mt-4 text-[#334155]">
           <input
+            class="w-4 h-4 accent-secondary bg-gray-100 border-gray-300 rounded focus:ring-primary"
             type="checkbox"
             id="delivery"
             name="delivery"
@@ -259,13 +260,11 @@ const PersonalInfo = ({ handleStep, setOrder }) => {
         <div className="mt-8 flex justify-between">
           <button
             onClick={() => handleStep(1)}
-            className="py-2 px-4 border rounded"
+            className="py-2 px-4 border rounded uppercase"
           >
             Cancelar
           </button>
-          <button className="py-2 px-4 border rounded bg-primary">
-            Enviar Pedido
-          </button>
+          <button className="py-2 px-4 btn-primary">Enviar Pedido</button>
         </div>
       </form>
     </motion.section>

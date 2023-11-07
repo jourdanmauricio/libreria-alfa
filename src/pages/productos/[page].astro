@@ -1,22 +1,29 @@
 ---
 import { getProdsLib } from '@services/products';
-import Layout from '../../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 import SearchProducts from '@components/Search/SearchProducts.jsx';
 import AsideCategories from '@components/AsideCategories/AsideCategories.astro';
 import ProductCard from '@components/ProductCard/ProductCard.astro';
 import Pagination from '@components/Pagination/Pagination.astro';
+import type { Product } from '../../types/types';
 
 export async function getStaticPaths({ paginate }) {
-  const prods = await getProdsLib();
+  const prods: Product[] = await getProdsLib();
+  console.log('prods', prods);
   const products = prods.filter((prod) => prod.status === 'active');
-  let cats = products.map((product) => product.categoryWeb);
-  cats = cats.filter((item, index) => cats.indexOf(item) === index);
+  let cats: string[] = products.map((product) => product.categoryWeb);
+  cats = cats.filter((item, index: number) => cats.indexOf(item) === index);
   cats = cats.sort();
 
-  return paginate(products, { pageSize: 15, props: { cats, products } });
+  return paginate(products, {
+    pageSize: 15,
+    props: { cats, products },
+  });
 }
 
-const { page, cats, products } = Astro.props;
+// cats, products
+const { page, cats, products }: { page: any; cats: string[]; products: any } =
+  Astro.props;
 ---
 
 <Layout title="Librería Alfa">
@@ -48,6 +55,7 @@ const { page, cats, products } = Astro.props;
                 firstPage="1"
                 lastPage={page.lastPage}
                 currentPage={page.currentPage}
+                path={`/libreria-alfa${page.url.current}`}
                 prev={`/libreria-alfa${page.url.prev}`}
                 next={`/libreria-alfa${page.url.next}`}
               />

@@ -10,9 +10,11 @@
       "@assets/*": ["src/assets/*"],
       "@config/*": ["src/config/*"],
       "@utils/*": ["src/utils/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@types/*": ["src/types/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
+    // "verbatimModuleSyntax": true
   }
 }

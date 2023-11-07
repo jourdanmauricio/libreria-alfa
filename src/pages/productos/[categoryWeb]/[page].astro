@@ -5,12 +5,13 @@ import SearchProducts from '@components/Search/SearchProducts.jsx';
 import AsideCategories from '@components/AsideCategories/AsideCategories.astro';
 import ProductCard from '@components/ProductCard/ProductCard.astro';
 import Pagination from '@components/Pagination/Pagination.astro';
+import type { Product } from '../../../types/types';
 
 export async function getStaticPaths({ paginate }) {
-  const prods = await getProdsLib();
+  const prods: Product[] = await getProdsLib();
   const products = prods.filter((prod) => prod.status === 'active');
 
-  let cats = products.map((product) => product.categoryWeb);
+  let cats: string[] = products.map((product) => product.categoryWeb);
   cats = cats.filter((item, index) => cats.indexOf(item) === index);
   cats = cats.sort();
 
@@ -57,6 +58,7 @@ const { page, cats, products } = Astro.props;
                 firstPage="1"
                 lastPage={page.lastPage}
                 currentPage={page.currentPage}
+                path={`/libreria-alfa${page.url.current}`}
                 prev={`/libreria-alfa${page.url.prev}`}
                 next={`/libreria-alfa${page.url.next}`}
               />
