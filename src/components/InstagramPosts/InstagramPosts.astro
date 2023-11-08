@@ -1,12 +1,282 @@
+---
+import { Icon } from 'astro-icon';
+---
+
 <div>
-  <h2 class='text-center text-2xl'>Publicaciones Instagram</h2>
+  <h2 class="text-center text-2xl py-12">Últimas publicaciones en Instagram</h2>
+
+  <section class="insta-container">
+    <div class="slider-wrapper">
+      <button id="prev-slide" class="slide-button">   
+        <Icon
+          name="mdi:chevron-left"
+        />
+      </button>
+      <div
+        id="image-list"
+        class="image-list"
+      >
+      </div>
+      <button id="next-slide" class="slide-button">   
+        <Icon
+          name="mdi:chevron-right"
+        />
+      </button>
+    </div>
+    <div class="slider-scrollbar">
+      <div class="scrollbar-track">
+        <div class="scrollbar-thumb"></div>
+      </div>
+    </div>
+  </section>
 </div>
 
+<style is:inline>
+  .insta-container {
+    width: 95%;
+    margin: 0 auto;
+    
+  }
+
+  .slider-wrapper {
+    position: relative;
+  }
+
+  .slider-wrapper .slide-button {
+    position: absolute;
+    top: 50%;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    border: none;
+    outline: none;
+    background: #000;
+    font-size: 2.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+
+  .slider-wrapper .slide-button:hover {
+    background: #444;
+  }
+
+  .slider-wrapper .slide-button#prev-slide {
+    left: -20px;
+    display: none;
+  }
+  .slider-wrapper .slide-button#next-slide {
+    right: -20px;
+  }
+
+  .slider-wrapper .image-list {
+    display: flex;
+    gap: 18px;
+    font-size: 0;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .slider-wrapper .image-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slider-wrapper .image-list .image-item {
+    /* width: 325px; */
+    height: 350px;
+    object-fit: contain;
+  }
+
+  .insta-container .slider-scrollbar {
+    height: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .slider-scrollbar .scrollbar-track {
+    height: 2px;
+    width: 100%;
+    background: #ccc;
+    position: relative;
+    border-radius: 4px;
+  }
+
+  .slider-scrollbar:hover .scrollbar-track {
+    height: 4px;
+  }
+
+  .slider-scrollbar .scrollbar-thumb {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: #000;
+    border-radius: inherit;
+    cursor: grab;
+  }
+
+  .slider-scrollbar .scrollbar-thumb:active {
+    cursor: grabbing;
+    height: 8px;
+    top: -2px;
+  }
+  .slider-scrollbar .scrollbar-thumb::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:-10px;
+    bottom: top:-10px;
+  }
+  @media (max-width: 1023px) {
+    .slider-wrapper .slide-button {
+      display: none !important;
+    }
+
+    .slider-wrapper .image-list {
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .slider-wrapper .image-list .image-item {
+      width: 280px; 
+      height: 380px;
+      object-fit: contain; 
+    }
+    .slider-scrollbar ,.scrollbar-thumb {
+      width: 20%;
+    }
+
+  }
+</style>
 <script>
-  import { getInstagramPosts } from '../../services/instagramPosts';
-  
-  const instagramPosts = await getInstagramPosts();
+   import { getInstagramPosts } from '../../services/instagramPosts';
+   const instagramPosts = await getInstagramPosts();
 
-  // console.log("Posts!!!", instagramPosts);
+  // const instagramPosts = [
+  //   {
+  //     id: '18391057972061738',
+  //     media_url:
+  //       'https://scontent-gru1-1.cdninstagram.com/v/t51.29350-15/400463677_1441109416464728_7002447544328841549_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=YH7VIkgUaoMAX8GHYb0&_nc_ht=scontent-gru1-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBlE6E-RXfno_OZBsJ9bWOD-hlGNTUT18Z199MlxOBBTg&oe=654FC50A',
+  //     caption: 'Test21',
+  //     permalink: 'https://www.instagram.com/p/CzYdXWLg3bO/',
+  //   },
+  //   {
+  //     id: '18030875278635769',
+  //     media_url:
+  //       'https://scontent-gru1-2.cdninstagram.com/v/t51.29350-15/399609631_1293414077984179_2205672256839102530_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=EJy44tgjOWAAX84JxqT&_nc_ht=scontent-gru1-2.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfAE8P3zkXeM6sk_GTEibwLRDjsnN9GpLwPwbLh95ZP6QQ&oe=654FF20B',
+  //     caption: 'Test!',
+  //     permalink: 'https://www.instagram.com/p/CzYdSg_gMxx/',
+  //   },
+  //   {
+  //     id: '17975773553442403',
+  //     media_url:
+  //       'https://scontent-gru1-1.cdninstagram.com/v/t51.29350-15/399552647_867636454681585_2419628201482446597_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=5HZAuy0cK7kAX8bSLm7&_nc_ht=scontent-gru1-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfAHLvM2UNwnW9Md4lxehkGf2FUfyZnYWatoVoHILARQPg&oe=65514DA3',
+  //     caption:
+  //       'Test, test, test, test, test, test, test, test, test, test, test, test, test, test, test...',
+  //     permalink: 'https://www.instagram.com/p/CzYcuZvg2Xu/',
+  //   },
+  //   {
+  //     id: '18274063954087680',
+  //     media_url:
+  //       'https://scontent-gru2-1.cdninstagram.com/v/t51.29350-15/399644161_642548627950815_9001251867620859861_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=aPaqP9pTlcQAX80ZHEk&_nc_ht=scontent-gru2-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfC1ZU_uDLG0DjP_ffAbssAQxZwBK46kAaKsQXkT1Iv1QQ&oe=65517A55',
+  //     caption: 'Test Web Integration.',
+  //     permalink: 'https://www.instagram.com/p/CzYcJ3vsgIS/',
+  //   },
+  //   {
+  //     id: '17870524100960669',
+  //     media_url:
+  //       'https://scontent-gru1-2.cdninstagram.com/v/t51.29350-15/401029766_910944287306888_4286912640510092146_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=30qEirWuqmoAX8JESo2&_nc_ht=scontent-gru1-2.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDQtt7MqWAGtYdEbG7wHYnPR-GeKHyfj_gFs6YGD6zTNw&oe=654FEE02',
+  //     caption: 'Imagen para prueba. Visualización básica.',
+  //     permalink: 'https://www.instagram.com/p/CzYb0OxA2mc/',
+  //   },
+  //   {
+  //     id: '18113943691328879',
+  //     media_url:
+  //       'https://scontent-gru1-2.cdninstagram.com/v/t51.29350-15/399660887_3818116751748846_2897835015150674018_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=0J57hdIS7ZYAX-pDVeK&_nc_ht=scontent-gru1-2.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDCWXoKbm55pI1R6YQ2One-Iqgr-zrcp7Bm0Mvn4zleow&oe=655017FC',
+  //     caption: 'Imagen para prueba. Visualización básica.',
+  //     permalink: 'https://www.instagram.com/p/CzYbv3vgWak/',
+  //   },
+  //   {
+  //     id: '18232807810220882',
+  //     media_url:
+  //       'https://scontent-gru2-1.cdninstagram.com/v/t51.29350-15/399568874_1037357737533398_470316540952382341_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=uUrShQDY8z0AX_8pFm_&_nc_ht=scontent-gru2-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfDaIYPX9DNLUGdk7MFC1jrq8x8IKa3nO1d1a7qq0pOqbg&oe=6550D6B0',
+  //     caption: 'Imagen para prueba. Visualización básica.',
+  //     permalink: 'https://www.instagram.com/p/CzYbrYVgR48/',
+  //   },
+  //   {
+  //     id: '17882276936960992',
+  //     media_url:
+  //       'https://scontent-gru2-2.cdninstagram.com/v/t51.29350-15/400188785_661532352629570_2501604689220305816_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=OZfn4m8YBYQAX_wT7JQ&_nc_ht=scontent-gru2-2.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBH9RDIH0OdK-nF8vxBabqNekgxSJ98prEqSOeXpxCfFg&oe=654F9CA2',
+  //     permalink: 'https://www.instagram.com/p/CzXcMTXs9-q/',
+  //   },
+  // ];
 
+  const imageList = document.querySelector('#image-list');
+
+  function createHtml(data) {
+    for (const img of data) {
+      imageList.innerHTML += `
+          <img class='image-item' loading='lazy' src='${img.media_url}' alt='' />
+        `;
+    }
+  }
+
+  createHtml(instagramPosts);
+  // createHtml(instagramPosts.data);
+
+  const slideButtons = document.querySelectorAll<HTMLElement>('.slider-wrapper .slide-button') ;
+  const sliderScrollbar = document.querySelector('.insta-container .slider-scrollbar') ;
+  const scrollbarThumb = sliderScrollbar.querySelector('.scrollbar-thumb') as HTMLElement;
+  const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+
+  scrollbarThumb.addEventListener("mousedown", (e) => {
+    const startX = e.clientX;
+    const thumbPosition = scrollbarThumb.offsetLeft;
+
+    // Update thumb position on mouse move
+    const handleMouseMove = (e) => {
+      const deltaX = e.clientX - startX;
+      const newThumbPosition = thumbPosition + deltaX;
+      const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
+
+      const boundedPosition = Math.max(0, Math.min(maxThumbPosition, newThumbPosition));
+      const scrollPosition = (boundedPosition / maxThumbPosition) * maxScrollLeft;
+      scrollbarThumb.style.left = `${boundedPosition}px`;
+      imageList.scrollLeft = scrollPosition;
+    }
+
+    // Remove eventListeners on mouse up
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    }
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  })
+
+  // Slide images according to the slide buttons click
+  slideButtons.forEach(button=> {
+    button.addEventListener('click', () => {
+      const direction = button.id === "prev-slide" ? -1 :  +1;
+      const scrollAmount = imageList.clientWidth * direction;
+      imageList.scrollBy({left: scrollAmount, behavior: "smooth" });
+    })
+  })
+
+  const handleSlideButtons = () => {
+    slideButtons[0].style.display = imageList.scrollLeft <=0 ? 'none' : 'block';
+    slideButtons[1].style.display = imageList.scrollLeft >=maxScrollLeft ? 'none' : 'block';
+  }
+
+  // Uupdate scollbar thumb position based on image scroll
+  const updateScrollThumbPosition = () => {
+    const scrollPosition = imageList.scrollLeft;
+    const thumbPosition = (scrollPosition / maxScrollLeft) * (sliderScrollbar.clientWidth - scrollbarThumb.offsetWidth);
+    scrollbarThumb.style.left = `${thumbPosition}px`;
+  }
+
+  imageList.addEventListener("scroll", () => {
+    handleSlideButtons();
+    updateScrollThumbPosition();
+  } )
 </script>
