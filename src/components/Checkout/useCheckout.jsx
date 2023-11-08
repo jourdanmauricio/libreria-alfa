@@ -61,10 +61,6 @@ const useCheckout = () => {
 
     try {
       const newOrder = await createOrder(obj);
-
-      console.log('setOrder');
-      // $cartItems.map((item) => removeCartItem(item.id));
-      console.log('delete items card');
       return newOrder;
     } catch (err) {
       console.log('ERRRORRRR', err);

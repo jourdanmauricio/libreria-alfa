@@ -295,7 +295,6 @@ const whatsapp = data.whatsapp.split('=')[0];
     if (!printFields[name]) return;
     let error = false;
     const allErrors = validations(printFields, name, value, errors);
-    console.log('allErrors', allErrors);
     for (const errorField in allErrors) {
       const $spanError = document.getElementById(`error-${errorField}`);
       const $inputError = document.getElementById(errorField);
@@ -347,7 +346,7 @@ const whatsapp = data.whatsapp.split('=')[0];
     // Send files
     try {
       const newOrder = await createPrint(data);
-      console.log('newOrder', newOrder);
+
       let phone = $whatsappMessage.dataset.whatsapp;
 
       const buyer = `PEDIDO DE IMPRESION NRO ${newOrder.id}\n* Nombre: ${newOrder.buyer[0].name}\n* Email: ${newOrder.buyer[0].email}\n* DNI: ${newOrder.buyer[0].dni}\n* Teléfono: ${newOrder.buyer[0].name}\n`;
@@ -382,11 +381,10 @@ const whatsapp = data.whatsapp.split('=')[0];
   let files;
 
   button.addEventListener('click', (e) => {
-    console.log('click');
     input.click();
   });
   dropArea.addEventListener('dragover', (e) => {
-    console.log('OVER');
+    // console.log('OVER');
     e.preventDefault();
     dropArea.classList.add('active');
     dragText.textContent = 'Suelta para subir los achivos';
@@ -422,7 +420,7 @@ const whatsapp = data.whatsapp.split('=')[0];
   }
   function processFile(file) {
     const docType = file.type;
-    console.log('docType', docType);
+    // console.log('docType', docType);
     const validExtension = [
       'image/jpeg',
       'image/jpg',

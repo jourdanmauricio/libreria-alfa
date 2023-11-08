@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '@components/Hero/Hero.astro';
 import Carousel from '@components/Carousel/Carousel.astro';
 import Subscription from '@components/Subscription/Subscription.astro';
+import InstagramPosts from '@components/InstagramPosts/InstagramPosts.astro';
 ---
 
 <Layout title="Librería Alfa">
@@ -13,6 +14,10 @@ import Subscription from '@components/Subscription/Subscription.astro';
   <div class="bg-slate-50">
     <Carousel section="new" />
   </div>
+  <div class="py-12">
+    <InstagramPosts />
+  </div>
+
   <div class="w-full h-[600px] flex items-center justify-center">
     <h1 class="text-slate-50 text-2xl">Welcome to Astro</h1>
   </div>

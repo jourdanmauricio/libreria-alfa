@@ -9,7 +9,6 @@ import type { Product } from '../../types/types';
 
 export async function getStaticPaths({ paginate }) {
   const prods: Product[] = await getProdsLib();
-  console.log('prods', prods);
   const products = prods.filter((prod) => prod.status === 'active');
   let cats: string[] = products.map((product) => product.categoryWeb);
   cats = cats.filter((item, index: number) => cats.indexOf(item) === index);

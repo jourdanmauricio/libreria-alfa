@@ -59,8 +59,6 @@ const FinishOrder = ({ order }) => {
     fetchData();
   }, []);
 
-  console.log('message', message);
-
   return (
     <div>
       <h2 className="text-xl">Pedido registrado con exitosamente</h2>

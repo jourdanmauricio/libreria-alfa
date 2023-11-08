@@ -135,7 +135,6 @@ const offices = await getOffices();
 
   <script define:vars={{ offices }}>
     window.initMap = function () {
-      console.log('offices[0]', offices[0]);
       var coord = {
         lat: parseFloat(offices[0].lat),
         lng: parseFloat(offices[0].lng),
@@ -156,6 +155,6 @@ const offices = await getOffices();
     defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeRYDNFRPnw7Hh7qs4Cog5H6CXmgwh5go&callback=initMap"
   >
-    console.log('PASS_MAPS', PASS_MAPS);
+    // console.log('PASS_MAPS', PASS_MAPS);
   </script>
 </Layout>

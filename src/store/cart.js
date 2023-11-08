@@ -16,7 +16,6 @@ export const isInCart = (id) => {
 };
 
 export const quantityInCart = (id) => {
-  console.log('ID', id);
   const found = cartItems.get().find((item) => item.id === id);
   return found.quantity || 0;
 };
@@ -50,7 +49,6 @@ export function subtractCartItem(id) {
     );
 
   newItems = newItems.filter((item) => item.quantity !== 0);
-  console.log('newItems', id, newItems);
   cartItems.set(newItems);
 }
 
