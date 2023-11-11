@@ -22,28 +22,18 @@ const instaPost = posts.filter((post) => post.sections.includes('instagram'));
       </button>
       <div
         id="image-list"
-        class="flex gap-[10px] lg:gap-[16px] mb-[15px] lg:mb-[30px] overflow-x-auto image-list w-full"
+        class="flex gap-[16px] mb-[30px] overflow-x-auto image-list"
       >
         {
           instaPost.map((post) => (
-            <a
-              href={`${post.slug}`}
-              target="_blank"
-              rel="nofollow noopener"
-              class="h-[280px] w-[280px] lg:h-[350px] lg:w-[350px] shrink-0 group relative"
-            >
-              <img
-                class="h-full w-full object-contain"
-                loading="lazy"
-                src={`${post.image}`}
-                alt=""
-              />
-              <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-80 duration-1000 transform translate-y-full group-hover:translate-y-[80%] transition-transform">
-                <p class="text-white text-center mt-2">
-                  {post.content.slice(0, 100)}
-                </p>
-              </div>
-            </a>
+            // <a href={`${post.slug}`} target="_blank" rel="nofollow noopener" class='image-item'>
+            <img
+              class="h-[350px] object-contain image-item"
+              loading="lazy"
+              src={`${post.image}`}
+              alt=""
+            />
+            // </a>
           ))
         }
       </div>
@@ -84,6 +74,17 @@ const instaPost = posts.filter((post) => post.sections.includes('instagram'));
   @media (max-width: 1023px) {
     .slide-button {
       display: none !important;
+    }
+
+    .image-list {
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .image-item {
+      width: 280px;
+      height: 380px;
+      object-fit: contain;
     }
   }
 </style>
