@@ -5,7 +5,7 @@ import { Icon } from 'astro-icon';
 
 <footer class="w-full bg-slate-950 text-white">
   <div
-    class="flex flex-col h-full lg:flex-row lg:justify-around justify-center items-start p-10 gap-8"
+    class="flex flex-col h-full lg:flex-row lg:justify-around justify-center items-start p-10 gap-8 max-w-[1600px] mx-auto"
   >
     <div
       class="place-self-center text-center w-full h-[200px] lg:w-1/3 flex flex-col justify-center items-center gap-4 border-b lg:border-r lg:border-b-0 pb-8"
@@ -52,10 +52,12 @@ import { Icon } from 'astro-icon';
     </div>
   </div>
 
-  <div class="text-center p-1 bg-slate-900">
-    <small
-      >&copy; 2023 <b>Librería Alfa</b> - Todos los derechos reservados.</small
-    >
+  <div class="bg-slate-900">
+    <div class="text-center p-1 max-w-[1600px] mx-auto">
+      <small
+        >&copy; 2023 <b>Librería Alfa</b> - Todos los derechos reservados.</small
+      >
+    </div>
   </div>
 </footer>
 
