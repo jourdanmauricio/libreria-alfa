@@ -11,14 +11,16 @@ import InstagramPosts from '@components/InstagramPosts/InstagramPosts.astro';
 <Layout title="Librería Alfa">
   <Hero />
 
-  <div class="bg-slate-50">
+  <div class="pt-20 bg-slate-50">
     <Carousel section="new" />
   </div>
-  <div class="py-20">
+  <div class="pt-20 bg-slate-50">
     <InstagramPosts />
   </div>
 
-  <Subscription />
+  <div class="pt-20">
+    <Subscription />
+  </div>
 </Layout>
 
 <style>

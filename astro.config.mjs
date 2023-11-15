@@ -11,6 +11,10 @@ export default defineConfig({
         protocol: 'https',
         hostname: '**.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.cdninstagram.com',
+      },
     ],
   },
   site: 'https://jourdanmauricio.github.io',

@@ -1,75 +1,53 @@
 ---
-import { Icon } from 'astro-icon';
 import { getPosts } from '../../services/posts';
+import instagramLogo from '@assets/images/instagram.png';
 
 const posts = await getPosts();
 
 const instaPost = posts
   .filter((post) => post.sections.includes('instagram'))
+  .slice(0, 6)
   .sort((a, b) => b.order - a.order);
 ---
 
-<section class="bg-secondary">
-  <h2 class="text-center text-3xl py-12 text-slate-50">
-    Últimas publicaciones en Instagram
-  </h2>
+<section>
+  <header class="flex flex-col items-center justify-center gap-8">
+    <img
+      class="object-contain"
+      src={instagramLogo.src}
+      width={350}
+      height={100}
+      alt="Publicaciones de Instagram"
+    />
+    <h2 class="text-3xl">Últimas publicaciones</h2>
+  </header>
 
-  <div class="w-11/12 max-w-[1600px] mx-auto">
-    <div class="relative">
-      <button
-        id="prev-slide"
-        class="absolute top-1/2 h-12 w-12 text-white border-none outline-none bg-black text-4xl cursor-pointer rounded-full -translate-y-1/2 hover:bg-gray-800 hidden -left-5 slide-button z-10"
-      >
-        <Icon name="mdi:chevron-left" />
-      </button>
-      <div
-        id="image-list"
-        class="flex gap-[10px] lg:gap-[16px] mb-[15px] lg:mb-[30px] overflow-x-auto image-list w-full"
-      >
-        {
-          instaPost.map((post) => (
-            <a
-              href={`${post.slug}`}
-              target="_blank"
-              rel="nofollow noopener"
-              class="h-[280px] w-[280px] lg:h-[350px] lg:w-[350px] shrink-0 group relative overflow-hidden"
-            >
-              <img
-                class="h-full w-full object-contain"
-                loading="lazy"
-                src={`${post.image}`}
-                alt=""
-              />
-              <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-80 duration-1000 transform translate-y-full group-hover:translate-y-[80%] transition-transform">
-                <p class="text-white text-center mt-2">
-                  {post.content.slice(0, 100)}
-                </p>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-      <button
-        id="next-slide"
-        class="absolute top-1/2 h-12 w-12 text-white border-none outline-none bg-black text-4xl cursor-pointer rounded-full -translate-y-1/2 hover:bg-gray-800 -right-5 slide-button"
-      >
-        <Icon name="mdi:chevron-right" />
-      </button>
-    </div>
-
+  <div class="w-11/12 max-w-[1600px] mx-auto pt-12">
     <div
-      class="h-[24px] w-full flex items-center group"
-      id="slider-scrollbar"
+      id="image-list"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
     >
-      <div
-        class="h-[2px] w-full bg-[#ccc] relative rounded group-hover:h-[4px] scrollbar-track"
-      >
-        <div
-          id="scrollbar-thumb"
-          class="absolute h-full w-1/2 bg-black rounded cursor-grab active:cursor-grabbing active:h-[8px] active:-top-[2px] after:content-[''] after:absolute after:left-0 after:right-0 after:-top-[10px] after:-bottom-[10px]"
-        >
-        </div>
-      </div>
+      {
+        instaPost.map((post) => (
+          <a
+            href={`${post.slug}`}
+            target="_blank"
+            rel="nofollow noopener"
+            class="relative mx-auto max-w-[300px] h-[300px] lg:max-w-none group overflow-hidden"
+          >
+            <img
+              class="h-full w-full object-contain"
+              src={`${post.image}`}
+              alt={`${post.id}`}
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-80 duration-1000 transform translate-y-full group-hover:translate-y-[80%] transition-transform">
+              <p class="text-white text-center mt-2">
+                {post.content.slice(0, 100)}
+              </p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
